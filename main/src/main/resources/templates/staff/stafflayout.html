@@ -1,0 +1,24 @@
+<div th:fragment="menu" id="menu">
+  
+  <nav class="navbar">
+      <a th:href="@{/about}">Course Tracking System - CTS</a>
+      <a th:href="@{/home}">Home</a>
+      <a th:href="@{/about}">About</a>
+        <div class="subnav">
+          <button class="subnavbtn">Staff Menu <i class="fa fa-caret-down"></i></button>
+          <div class="subnav-content">
+            <a th:href="@{/staff/leave/history}">View Your Leave History</a>
+            <a th:href="@{/staff/leave/create}">Apply For New Leave</a>
+          </div>
+        </div>    
+        <form th:action="@{/logout}" method="post">
+
+          <a>
+            <input display="none" type="submit" value="LogOut"/></a>
+        </form>  
+      
+      
+
+      </form>
+    </nav>
+</div>

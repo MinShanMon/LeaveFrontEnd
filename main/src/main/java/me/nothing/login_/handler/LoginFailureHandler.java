@@ -29,6 +29,7 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
         System.out.println("Login error:" + exception.getMessage());
 
         String username = request.getParameter("username");
+        System.out.print(username);
         Staff staff = staffService.getUserbyUsername(username);
 
         if (staff != null) {

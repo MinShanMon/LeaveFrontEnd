@@ -10,18 +10,21 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+
+@Data
 public class _StaffDetails implements UserDetails {
 
 	@Autowired
 	private Staff staff;
-
+	public _StaffDetails(){}
 	public _StaffDetails(Staff staff) {
 		this.staff = staff;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<Role> roles = staff.getRoles();
+		List<Role> roles = staff.getRoles();
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
 		for (Role role : roles) {

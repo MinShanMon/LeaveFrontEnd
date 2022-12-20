@@ -38,7 +38,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         }
 
         if (staffDetails.hasRole("staff")) {
-            currentUrl += "/staff";
+            currentUrl += "/staff/leave/history";
         }
 
         if (staffDetails.hasRole("manager")) {

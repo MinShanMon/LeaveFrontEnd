@@ -1,15 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+  <head th:replace="layout.html :: html_head"/>
 <body>
-    <h1>Staff Page</h1>
-    <form th:action="@{/logout}" method="post">
-		<input type="submit" value="Sign Out" />
-	</form>
+  <div th:replace="staff/stafflayout.html :: menu"/>
+  <h2>Your Course History</h2>
+  
+  <div th:if="${#lists.isEmpty(lhistory)}">
+    <p>You have no courses. Start applying a new one.</p>
+  </div>
+  
+  <div th:if="${not #lists.isEmpty(lhistory)}">
+    <!-- <div  th:if="${leave.reason == ''}"> -->
+        <table style=" border: 1;">
+            <tr class="listHeading">
+              <th><span>leaveId</span></th>
+              <th><span>EmployeeId</span></th>
+              <th><span>Type</span></th>
+              <th><span th:text="#{fieldLabel.startDate}"></span></th>
+              <th><span th:text="#{fieldLabel.endDate}"></span></th>
+              <th><span>Period</span></th>
+              <th><span>Status</span></th>                    
+                <th><span>Reason</span></th>         
+              
+              
+              <th><span>WorkD</span></th>
+              <th><span th:text="#{fieldLabel.update}"></span></th>
+              <th><span>Withdraw/Delete</span></th>
+            </tr>
+            <tr th:each="leave : ${lhistory}" class="listRecord" th:if="${not #strings.equals(leave.status, 'DELETED')}">
+              <td align="left" th:text="${leave.id}">Id</td>
+              <td align="left" th:text="${leave.employeeId}">Employee</td>
+              <td align="left" th:text="${leave.type}">Name</td>
+              <td align="left" th:text="${#temporals.format(leave.startDate, 'yyyy-MM-dd')}">From</td>
+              <td align="left" th:text="${#temporals.format(leave.endDate, 'yyyy-MM-dd')}">To</td>
+              <td align="left" th:text="${leave.period}">Fees</td>
+              <td align="left" th:text="${leave.status}">Status</td> 
+              
+                <td align="left" th:text="${leave.reason}"></td>         
+              
+              <td align="left" th:text="${leave.work}"></td>
+              <td></td>
+              <td></td>
+              <!-- <td>
+                <div
+                th:if="${#strings.equals(leave.status, 'SUBMITTED')  or #strings.equals(leave.status,'UPDATED')}">
+                    <a th:href="@{/staff/leave/edit/}+${leave.id}">Update</a>
+                </div>
+              </td>
+              <td>
+                <div
+                  th:if="${#strings.equals(leave.status, 'APPROVED')}">
+                  <a th:href="@{/staff/leave/withdraw/}+${leave.id}">Withdraw</a>
+                </div>
+                <div
+                th:if="${#strings.equals(leave.status, 'SUBMITTED')  or #strings.equals(leave.status,'UPDATED')}">
+                  <a th:href="@{/staff/leave/delete/}+${leave.id}">Delete</a>
+                </div>
+              </td> -->
+            </tr>
+        </table>
+    <!-- </div> -->
+    <!-- <div th:if="${leave.reason != ''}"></div>>
+    <tr class="listHeading">
+        <th><span>leaveId</span></th>
+        <th><span>EmployeeId</span></th>
+        <th><span>Type</span></th>
+        <th><span th:text="#{fieldLabel.startDate}"></span></th>
+        <th><span th:text="#{fieldLabel.endDate}"></span></th>
+        <th><span>Period</span></th>
+        <th><span>Status</span></th>        
+        <th><span>Reason</span></th>               
+        <th><span>WorkD</span></th>
+        <th><span th:text="#{fieldLabel.update}"></span></th>
+        <th><span th:text="#{fieldLabel.withdraw}"></span></th>
+      </tr>
+      <tr th:each="leave : ${lhistory}" class="listRecord">
+        <td align="left" th:text="${leave.id}">Id</td>
+        <td align="left" th:text="${leave.employeeId}">Employee</td>
+        <td align="left" th:text="${leave.type}">Name</td>
+        <td align="left" th:text="${#temporals.format(leave.startDate, 'yyyy-MM-dd')}">From</td>
+        <td align="left" th:text="${#temporals.format(leave.endDate, 'yyyy-MM-dd')}">To</td>
+        <td align="left" th:text="${leave.period}">Fees</td>
+        <td align="left" th:text="${leave.status}">Status</td>        
+        <td align="left" th:text="${leave.reason}"></td>        
+        <td align="left" th:text="${leave.work}"></td>
+        <td>
+       
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </table>
+    </div> -->
+
+  </div>
+	
 </body>
 </html>
