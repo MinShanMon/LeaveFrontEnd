@@ -16,8 +16,7 @@ import lombok.Data;
 public class _StaffDetails implements UserDetails {
 
 	@Autowired
-	private Staff staff;
-	private List<Staff> subordinates;
+	private Staff staff;	
 	public _StaffDetails(){}
 	public _StaffDetails(Staff staff) {
 		this.staff = staff;

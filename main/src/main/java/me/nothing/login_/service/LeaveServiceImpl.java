@@ -127,5 +127,18 @@ public class LeaveServiceImpl implements LeaveService {
         return withdrawedLeave.block();
     }
     
-    
+    @Override
+    public List<Leave> getpendingLeave(int id){
+        Flux<Leave> pendingleave  = webClient.get().uri("/viewpending/{id}",id)
+                                    .accept(MediaType.APPLICATION_JSON)
+                                    .exchangeToFlux(response->{
+                                        if(response.statusCode().equals(HttpStatus.OK)){
+                                            return response.bodyToFlux(Leave.class);
+                                        }
+                                        else{
+                                            return response.createException().flatMapMany(Flux::error);
+                                        }
+                                    });
+        return pendingleave.collectList().block();
+    }
 }

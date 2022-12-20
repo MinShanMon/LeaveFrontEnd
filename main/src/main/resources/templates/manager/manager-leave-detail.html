@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="layout.html :: html_head"/>
+<body>
+    <div th:replace="manager/managerlayout.html :: menu"/>
+    <h3>Leave Detail for Approval</h3>
+
+  <table>
+    <tr>
+      <th align="right"><span>Leave
+          ID</span></th>
+      <td colspan="3" th:text="${leave.id}">Id</td>
+    </tr>
+    <tr>
+      <th align="right"><span>Leave
+          Type</span></th>
+      <td colspan="3" th:text="${leave.type}">Name</td>
+    </tr>
+    <tr>
+      <th align="right"><span>Start
+          Date</span></th>
+      <td th:text="${#temporals.format(leave.startDate, 'dd-MMM-yyyy')}">
+        From Date</td>
+      <th align="right"><span>End
+          Date</span></th>
+      <td th:text="${#temporals.format(leave.endDate, 'dd-MMM-yyyy')}">To
+        Date</td>
+    </tr>
+    <tr>
+      <th align="right"><span>Period</span>
+      </th>
+      <td colspan="3" th:text="${leave.period}"></td>
+    </tr>
+        <tr>
+      <th align="right"><span>WorkDissemination</span>
+      </th>
+      <td colspan="3" th:text="${leave.work}"></td>
+    </tr>
+    <tr>
+      <th align="right"><span>Status</span>
+      </th>
+      <td colspan="3" th:text="${leave.status}">Status</td>
+    </tr>
+  </table>
+
+
+  <form action="#" th:action="@{/manager/leave/edit/}+${leave.id}" th:object="${approve}" method="post">
+    <table>
+      <tr>
+        <td>
+          <fieldset>
+            <input type="radio" th:field="*{decision}" th:value="APPROVED" />
+            <label>Approve</label> &nbsp;&nbsp; <input type="radio"
+              th:field="*{decision}" th:value="REJECTED" /> <label>Reject</label>
+          </fieldset>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Comment</label></td>
+        <td><input th:field="*{reason}" type="text"></td>
+      </tr>
+      <tr>
+        <td>
+          <fieldset>
+            <input th:type="submit" th:value="Update" class="blcass" />
+          </fieldset>
+        </td>
+
+      </tr>
+
+    </table>
+
+  </form>
+</body>
+</html>

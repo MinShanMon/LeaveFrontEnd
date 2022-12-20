@@ -67,7 +67,11 @@ public class LoginApplication {
 			// Leave leave = leaveService.updateLeaveHistory(leave22);
 			// System.out.println("updated leave");
 			// System.out.println(leave);
-			
+			// List<Leave> leaves = leaveService.getpendingLeave(2);
+			// for(Leave l: leaves){
+			// 	System.out.println(l);
+			// }
+
 		};
 	}
 }
