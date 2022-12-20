@@ -93,6 +93,8 @@ public class Staff {
 
 	public boolean isOTPRequired() {
 		if (this.getOtp() == null) {
+			
+			System.out.println("no need otp");
 			return false;
 		}
 

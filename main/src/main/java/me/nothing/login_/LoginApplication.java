@@ -36,18 +36,18 @@ public class LoginApplication {
 		return args -> {
 			// Role role1 = roleRepository.save(new Role("admin"));
 			// Role role2 = roleRepository.save(new Role("manager"));
-			// Role role3 = roleRepository.save(new Role("staff"));			
+			Role role3 = roleRepository.save(new Role("staff"));			
 			// String passwd= "root";
-			// String encodedPassword = passwordEncoder.encode(passwd);
-			// Staff staff1 = staffRepository.save(new Staff(1, 0, "manager", encodedPassword, "shanmon@gmail.com", "notitile", "shan", "mon", true, null, null, 60, 10, 0, 0, null));
+			String encodedPassword = passwordEncoder.encode("root");
+			Staff staff1 = staffRepository.save(new Staff(1, 0, "root", encodedPassword, "lapyae.945@gmail.com", "notitile", "shan", "mon", true, null, null, 60, 10, 0, 1, null));
 			// Staff staff2 = staffRepository.save(new Staff(2, 1, "staff", encodedPassword, "chaile@gmail.com", "notitile", "ch", "lay", true, null, null, 60, 10, 0, 0, null));
 			// List<Role> manager = new ArrayList<>();
-			// List<Role> staff = new ArrayList<>();
+			List<Role> staff = new ArrayList<>();
 			// manager.add(role2);
-			// staff.add(role3);
-			// staff2.setRoles(staff);
+			staff.add(role3);
+			staff1.setRoles(staff);
 			// staff1.setRoles(manager);
-			// staffRepository.saveAndFlush(staff2);
+			staffRepository.saveAndFlush(staff1);
 			// staffRepository.saveAndFlush(staff1);
 			// Leave leave2 = new Leave(LeaveTypeEnum.MEDICAL_LEAVE, LocalDate.now().plusDays(2), LocalDate.now().plusDays(4), 2, LeaveStatusEnum.APPROVED, "null", "null");
 			// Leave leave22 = leaveService.createLeaveHistory(2, leave2);
