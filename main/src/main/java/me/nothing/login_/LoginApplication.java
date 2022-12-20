@@ -37,12 +37,14 @@ public class LoginApplication {
 	@Bean
 	public CommandLineRunner run(StaffRepository staffRepository, RoleRepository roleRepository, LeaveService leaveService, ExtraHourService extraHourService) {
 		return args -> {
-			Role role1 = roleRepository.save(new Role("admin"));
+
+			// Role role1 = roleRepository.save(new Role("admin"));
 			Role role2 = roleRepository.save(new Role("manager"));
 			Role role3 = roleRepository.save(new Role("staff"));			
-			String passwd= "root";
-			String encodedPassword = passwordEncoder.encode(passwd);
-			Staff staff1 = staffRepository.save(new Staff(1, 0, "manager", encodedPassword, "shanmon@gmail.com", "notitile", "shan", "mon", true, null, null, 60, 10, 0, 0, null));
+			// String passwd= "root";
+			String encodedPassword = passwordEncoder.encode("root");
+			Staff staff1 = staffRepository.save(new Staff(1, 0, "root", encodedPassword, "lapyae.945@gmail.com", "notitile", "shan", "mon", true, null, null, 60, 10, 0, 1, null));
+
 			Staff staff2 = staffRepository.save(new Staff(2, 1, "staff", encodedPassword, "chaile@gmail.com", "notitile", "ch", "lay", true, null, null, 60, 10, 0, 0, null));
 			List<Role> manager = new ArrayList<>();
 			List<Role> staff = new ArrayList<>();
@@ -50,55 +52,33 @@ public class LoginApplication {
 			staff.add(role3);
 			staff2.setRoles(staff);
 			staff1.setRoles(manager);
-			staffRepository.saveAndFlush(staff2);
+
 			staffRepository.saveAndFlush(staff1);
-			Leave leave2 = new Leave(LeaveTypeEnum.MEDICAL_LEAVE, LocalDate.now().plusDays(2), LocalDate.now().plusDays(4), 2, LeaveStatusEnum.SUBMITTED, "null", "null");
+			staffRepository.saveAndFlush(staff2);
+			Leave leave2 = new Leave(LeaveTypeEnum.MEDICAL_LEAVE, LocalDate.now().plusDays(2), LocalDate.now().plusDays(4), 2, LeaveStatusEnum.APPROVED, "null", "null");
 			Leave leave22 = leaveService.createLeaveHistory(2, leave2);
 
-						List<Leave> leaves = leaveService.findLeaveWithStaffId(2);
-			for(Leave l: leaves){
-				System.out.println("find leave with staff id");
-				System.out.println(l);
-			}
-			Leave leave23 = new Leave(1,LeaveTypeEnum.ANNUAL_LEAVE, LocalDate.now().plusDays(1), LocalDate.now().plusDays(15), 2, LeaveStatusEnum.SUBMITTED, "null", "null",staff2);
-			System.out.println("created leave");
-			System.out.println(leave22);
-			Leave leave = leaveService.updateLeaveHistory(leave22);
-			System.out.println("updated leave");
-			ExtraHour ex1 = new ExtraHour(1,1,1);
-			ExtraHour ex2 = new ExtraHour();
-			ex2 = extraHourService.createExtraHour(ex1);
-			List<ExtraHour> exs = extraHourService.suboExtraHour(1);
-			System.out.println(ex2);
-			for(ExtraHour l: exs){
-				System.out.println("find Extra with staff id");
-				System.out.println(l);
-			}
-			System.out.println(leave);};
-			
-			
+			// 			List<Leave> leaves = leaveService.findLeaveWithStaffId(2);
 
-		// 	String passwd= "root";
-		// 	String encodedPassword = passwordEncoder.encode(passwd);
-		// 	Staff staff2 = staffRepository.save(new Staff(2, 1, "staff", encodedPassword, "chaile@gmail.com", "notitile", "ch", "lay", true, null, null, 60, 10, 0, 0, null));
 			
-		// 	Leave leave2 = new Leave(LeaveTypeEnum.MEDICAL_LEAVE, LocalDate.now().plusDays(2), LocalDate.now().plusDays(4), 2, LeaveStatusEnum.SUBMITTED, "null", "null");
-		// 	Leave leave22 = leaveService.createLeaveHistory(2, leave2);
+			// for(Leave l: leaves){
+			// 	System.out.println("find leave with staff id");
+			// 	System.out.println(l);
+			// }
+			// Leave leave23 = new Leave(1,LeaveTypeEnum.ANNUAL_LEAVE, LocalDate.now().plusDays(1), LocalDate.now().plusDays(15), 2, LeaveStatusEnum.SUBMITTED, "null", "null",staff2);
+			
+			// System.out.println("created leave");
+			// System.out.println(leave22);
 
-		// 				List<Leave> leaves = leaveService.findLeaveWithStaffId(2);
-		// 	for(Leave l: leaves){
-		// 		System.out.println("find leave with staff id");
-		// 		System.out.println(l);
-		// 	}
-			
-		// 	// Leave leave23 = new Leave(1,LeaveTypeEnum.ANNUAL_LEAVE, LocalDate.now().plusDays(1), LocalDate.now().plusDays(15), 2, LeaveStatusEnum.SUBMITTED, "null", "null",staff2);
-			
-		// 	System.out.println("created leave");
-		// 	System.out.println(leave22);
-		// 	Leave leave = leaveService.updateLeaveHistory(leave22);
-		// 	System.out.println("updated leave");
-		// 	System.out.println(leave);
-		// };
-		
+			// Leave leave = leaveService.updateLeaveHistory(leave22);
+			// System.out.println("updated leave");
+			// System.out.println(leave);
+			// List<Leave> leaves = leaveService.getpendingLeave(2);
+			// for(Leave l: leaves){
+			// 	System.out.println(l);
+			// }
+
+		};
+
 	}
 }

@@ -23,4 +23,6 @@ public interface LeaveService {
     public Leave deleteLeave(int id);
 
     public Leave withdrawLeave(int id);
+
+    public List<Leave> getpendingLeave(int id);
 }

@@ -42,7 +42,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         }
 
         if (staffDetails.hasRole("manager")) {
-            currentUrl += "/manager";
+            currentUrl += "/manager/pending";
         }
 
         Staff staff = staffDetails.getStaff();
