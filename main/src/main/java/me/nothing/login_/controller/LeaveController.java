@@ -31,7 +31,7 @@ public class LeaveController {
     LeaveService leaveService;
 
     @GetMapping("leave/history")
-    public String employeeLeaveHistory(HttpSession session, Model model, Authentication authentication){
+    public String employeeLeaveHistory( Model model, Authentication authentication){
         _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();        
         List<Leave> employeeLeave = leaveService.findLeaveWithStaffId(staffDetails.getStaff().getStfId());
         for(Leave l: employeeLeave){
@@ -67,14 +67,12 @@ public class LeaveController {
         return "staff/leave-edit";
     }
 
-    @PutMapping("/leave/edit/{id}")
-    public String editLeave(@ModelAttribute Leave leave, BindingResult result, @PathVariable Integer id, Authentication authentication)
+    @PostMapping("/leave/edit/{id}")
+    public String editLeave(@ModelAttribute Leave leave, BindingResult result, @PathVariable Integer id)
     {
         if(result.hasErrors()){
             return "staff/leave-edit";
         }
-        _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();
-        leave.setLeave(staffDetails.getStaff());
         leave.setStartDate(leave.getStartDate());
         leave.setEndDate(leave.getEndDate());
         leave.setType(leave.getType());
@@ -82,19 +80,18 @@ public class LeaveController {
         return "redirect:/staff/leave/history";
     }
 
-    // @PutMapping("/leave/withdraw/{id}")
-    // public String withdrawLeave(@PathVariable("id") Integer id, Authentication authentication){
-    //     // Leave leave = leaveService.getLeaveWithLeaveId(id);
-    //     leaveService.withdrawLeave(id);
-    //     return "redirect:/staff/leave/history";
+    @GetMapping("/leave/withdraw/{id}")
+    public String withdrawLeave(@PathVariable("id") Integer id){
+        // Leave leave = leaveService.getLeaveWithLeaveId(id);
+        leaveService.withdrawLeave(id);
+        return "redirect:/staff/leave/history";
         
-    // }
+    }
 
-    // @PutMapping("/leave/delete/{id}")
-    // public String deleteLeave(@PathVariable("id") Integer id, Authentication authentication){
-    //     leaveService.deleteLeave(id);
-    //     return "redirect:/staff/leave/history";
-    // }
-
+    @GetMapping("/leave/delete/{id}")
+    public String deleteLeave(@PathVariable("id") Integer id){
+        leaveService.deleteLeave(id);
+        return "redirect:/staff/leave/history";
+    }
 
 }

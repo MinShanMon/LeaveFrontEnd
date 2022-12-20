@@ -60,10 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/login", "/**").permitAll()
-				// .antMatchers("/admin/**").hasAuthority("admin")
-				// .antMatchers("/manager/**").hasAuthority("manager")
-				// .antMatchers("/staff/**").hasAuthority("staff")
+				.antMatchers("/login").permitAll()
+				.antMatchers("/admin/**").hasAuthority("admin")
+				.antMatchers("/manager/**").hasAuthority("manager")
+				.antMatchers("/staff/**").hasAuthority("staff")
 				.and()
 				.addFilterBefore(customAuthenticationFilter, CustomAuthenticationFilter.class)
 				.formLogin()

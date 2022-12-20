@@ -1,5 +1,7 @@
 package me.nothing.login_.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import me.nothing.login_.model.Staff;
 import me.nothing.login_.model._StaffDetails;
+import me.nothing.login_.service.LeaveService;
 import me.nothing.login_.service.StaffService;
 
 @Controller
@@ -26,6 +29,10 @@ public class LoginController {
 
 	@Autowired
 	StaffService staffService;
+
+	@Autowired
+	LeaveService leaveService;
+	
 	@RequestMapping("")
 	public String index() {
 		return "redirect:login";
@@ -48,9 +55,12 @@ public class LoginController {
 		}
 		
 		_StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();
+
 		System.out.println("this is " + authentication);
 		System.out.println("this is " + staffDetails.hasRole("admin"));
-		
+		// List<Staff> surbodinates = leaveService.getSubordinate(staffDetails.getStaff().getStfId());
+		// staffDetails.setSubordinates(surbodinates);
+		// session.setAttribute("usersession", staffDetails);
 		if (staffDetails.hasRole("staff")) {
 			return "redirect:/staff";
 		} else if (staffDetails.hasRole("manager")) {
@@ -60,6 +70,7 @@ public class LoginController {
 		} else {
 			return "redirect:/staff";
 		}
+
 	}
 
 	@GetMapping("/admin")

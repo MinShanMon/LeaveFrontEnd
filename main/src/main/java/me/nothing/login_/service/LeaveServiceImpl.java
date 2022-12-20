@@ -118,7 +118,6 @@ public class LeaveServiceImpl implements LeaveService {
     @Override
     public Leave deleteLeave(int id) {        
         Mono<Leave> deletedLeave = webClient.put().uri("/delete/put/{id}", id).retrieve().bodyToMono(Leave.class);
-
         return deletedLeave.block();
     }
 

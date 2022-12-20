@@ -19,10 +19,52 @@
               <a th:href="@{/manager/subordinates-history}">Subordinates History</a>
             </div>
         </div>
-      </nav>
-    <h1>Manager Page</h1>
-    <form th:action="@{/logout}" method="post">
-		<input type="submit" value="Sign Out" />
-	</form>
+        <form th:action="@{/logout}" method="post">
+          <a><input type="submit" value="Sign Out" /></a>
+          </form>
+      </nav>    
+  <h3>Leave History</h3>
+  
+  <div th:if="${not #lists.isEmpty(pendinghistory)}">
+    <table>
+      <tr class="listRecord" th:each="entry, stat : ${pendinghistory} ">
+        <td>
+          <h4 th:text="${entry.key.username}">Name</h4>          
+          <div th:if="${#lists.isEmpty(entry.value)}">
+            <p>No Pending Leave</p>
+          </div>
+          <div th:if="${not #lists.isEmpty(entry.value)}">
+            <table style="border: 1;">
+              <tr class="listHeading">
+                <th><span>leaveId</span></th>
+                <!-- <th><span>EmployeeId</span></th> -->
+                <th><span>Type</span></th>
+                <th><span>endDate</span></th>
+                <th><span>startDate</span></th>
+                <th><span>Period</span></th>
+                <th><span>Status</span></th>                    
+                <th><span>Reason</span></th>         
+                <th><span>WorkD</span></th>
+                <th><span>Leave</span></th>
+              </tr>
+              <tr class="listRecord" th:each="leave : ${entry.value}">
+                <td th:text="${leave.id}">Id</td>
+                <!-- <td th:text="${leave.employeeId}">Employee</td> -->
+                <td th:text="${leave.type}">Name</td>
+                <td th:text="${#temporals.format(leave.startDate, 'yyyy-MM-dd')}">From</td>
+                <td th:text="${#temporals.format(leave.endDate, 'yyyy-MM-dd')}">To</td>
+                <td th:text="${leave.period}">Fees</td>
+                <td th:text="${leave.status}">Status</td>                 
+                <td th:text="${leave.reason}"></td>                         
+                <td th:text="${leave.work}"></td>
+                <td><a th:href="@{/manager/leave/display/}+${leave.id}"
+                    class="btn btn-default"><span>details</span></a></td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 </body>
 </html>
