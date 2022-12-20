@@ -24,7 +24,7 @@
                 <th><span>Status</span></th>                    
                 <th><span>Reason</span></th>         
                 <th><span>WorkD</span></th>
-                <th><span>Leave</span></th>
+                
               </tr>
               <tr class="listRecord" th:each="leave : ${entry.value}">
                 <td th:text="${leave.id}">Id</td>
@@ -36,8 +36,7 @@
                 <td th:text="${leave.status}">Status</td>                 
                 <td th:text="${leave.reason}"></td>                         
                 <td th:text="${leave.work}"></td>
-                <td><a th:href="@{/manager/leave/display/}+${leave.id}"
-                    class="btn btn-default"><span>details</span></a></td>
+
               </tr>
             </table>
           </div>
