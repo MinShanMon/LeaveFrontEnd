@@ -35,6 +35,7 @@ public class LeaveServiceImpl implements LeaveService {
                 .filter(logRequest())
                 .build();
     }
+    
     private ExchangeFilterFunction logRequest() {
         return (clientRequest, next) -> {
             LOGGER.info("Request: {} {}" + clientRequest.method() + clientRequest.url());

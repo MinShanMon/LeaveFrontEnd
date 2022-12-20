@@ -49,10 +49,12 @@ public class LoginApplication {
 			// staff1.setRoles(manager);
 			// staffRepository.saveAndFlush(staff2);
 			// staffRepository.saveAndFlush(staff1);
-			// Leave leave2 = new Leave(LeaveTypeEnum.MEDICAL_LEAVE, LocalDate.now().plusDays(2), LocalDate.now().plusDays(4), 2, LeaveStatusEnum.SUBMITTED, "null", "null");
+			// Leave leave2 = new Leave(LeaveTypeEnum.MEDICAL_LEAVE, LocalDate.now().plusDays(2), LocalDate.now().plusDays(4), 2, LeaveStatusEnum.APPROVED, "null", "null");
 			// Leave leave22 = leaveService.createLeaveHistory(2, leave2);
 
 			// 			List<Leave> leaves = leaveService.findLeaveWithStaffId(2);
+
+			
 			// for(Leave l: leaves){
 			// 	System.out.println("find leave with staff id");
 			// 	System.out.println(l);
@@ -61,9 +63,11 @@ public class LoginApplication {
 			
 			// System.out.println("created leave");
 			// System.out.println(leave22);
+
 			// Leave leave = leaveService.updateLeaveHistory(leave22);
 			// System.out.println("updated leave");
 			// System.out.println(leave);
+			
 		};
 	}
 }
