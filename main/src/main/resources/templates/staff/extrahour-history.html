@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: html_head"/>
+<body>
+  <div th:replace="fragments/layout.html :: menu"/>
+  <div th:replace="fragments/layout.html :: header"/> 
+  <h2>Your Extra Hour Application History</h2>
+
+  <!-->controller returns the list to the view<!-->
+  <div th:if="${#lists.isEmpty(chistory)}">
+    <p>You have no record. Start applying a new one.</p>
+  </div>
+  
+  <div th:if="${not #lists.isEmpty(chistory)}">
+    <table style=" border: 1;">
+      <tr class="listHeading">
+        <th><span th:text="ID"></span></th>
+        <th><span th:text="Staff ID"></span></th>
+        <th><span th:text="Date"></span></th>
+        <th><span th:text="Working Hour"></span></th>
+        <th><span th:text="Status"></span></th>
+        <th><span th:text="Update"></span></th>
+        <th><span th:text="Delete"></span></th>
+      </tr>
+      <tr th:each="ExtraHour : ${ExtraHour}" class="listRecord">
+        <td align="left" th:text="${ExtraHour.id}">ID</td>
+        <td align="left" th:text="${ExtraHour.Staff_id}">Staff ID</td>
+        <td align="left" th:text="${${#temporals.format(ExtraHour.date, 'yyyy-MM-dd')}"}">Date</td>
+        <td align="left" th:text="${ExtraHour.working_hour}">Working Hour</td>
+        <td align="left" th:text="${ExtraHour.status}">Status</td>
+        <td>
+          <div
+            th:if="${#strings.equals(ExtraHour.status, 'SUBMITTED')  or #strings.equals(ExtraHour.status,'UPDATED')}">
+            <a th:href="@{/extra/put/}+${ExtraHour.id}">Update</a>
+          </div>
+        </td>
+        <td>
+          <div
+            th:if="${#strings.equals(ExtraHour.status, 'SUBMITTED')  or #strings.equals(ExtraHour.status,'UPDATED')}">
+            <a th:href="@{/extra/delete/}+${ExtraHour.id}">Delete</a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>
