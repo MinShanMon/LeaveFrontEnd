@@ -3,6 +3,7 @@
     <head th:replace="layout.html :: html_head"/>
 <body>
     <div th:replace="staff/stafflayout.html :: menu"/>
+    
     <form action="#" th:action="@{/staff/leave/create}"
     th:object="${leave}" method="post">
     <table>
@@ -42,6 +43,11 @@
             <td><span>workDissemination</span></td>
             <td><input type="text" th:field="*{work}"></td>
             <td th:if="${#fields.hasErrors('work')}" th:errors="*{work}"></td>
+        </tr>
+        <tr>
+          <td><span>Half Day Leave</span></td>
+          <td><input type="checkbox" th:field="*{halfday}" /></td>
+          <td th:if="${#fields.hasErrors('halfday')}" th:errors="*{halfday}"></td>
         </tr>
         <tr>
           <td></td>

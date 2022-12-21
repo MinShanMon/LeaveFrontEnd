@@ -11,7 +11,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,13 +25,21 @@ import me.nothing.login_.model.LeaveStatusEnum;
 import me.nothing.login_.model._StaffDetails;
 import me.nothing.login_.service.LeaveService;
 import org.springframework.security.core.Authentication;
-
+import me.nothing.login_.validator.LeaveValidator;;
 @Controller
 @RequestMapping("/staff")
 public class LeaveController {
     @Autowired
-    LeaveService leaveService;
+    private LeaveService leaveService;
 
+    @Autowired
+    private LeaveValidator leaveValidator;
+
+    @InitBinder("leave")
+    private void initLeaveBinder(WebDataBinder binder){
+        binder.addValidators(leaveValidator);
+    }
+    
     @GetMapping("leave/history")
     public String employeeLeaveHistory( Model model, Authentication authentication){
         _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();        
@@ -40,6 +50,10 @@ public class LeaveController {
         model.addAttribute("lhistory", employeeLeave);
         return "staff/home";
     }
+    @GetMapping("leave/both")
+    public String bothLeavePage(){
+        return "staff/both-leave";
+    }
 
     @GetMapping("leave/create")
     public String newLeavePage(Model model){
@@ -48,14 +62,14 @@ public class LeaveController {
     }
 
     @PostMapping("/leave/create")
-    public String createNewLeave(@ModelAttribute @Valid Leave leave, BindingResult result, Authentication authentication){
+    public String createNewLeave(@ModelAttribute("leave") @Valid Leave leave, BindingResult result, Authentication authentication){
         if(result.hasErrors()){
             return "staff/leave-new";
         }
 
         _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();
         leave.setLeave(staffDetails.getStaff());        
-        
+        leave.setPeriod(.5);
         leaveService.createLeaveHistory(staffDetails.getStaff().getStfId(), leave);
         return "redirect:/staff/leave/history";
     }
@@ -68,9 +82,10 @@ public class LeaveController {
     }
 
     @PostMapping("/leave/edit/{id}")
-    public String editLeave(@ModelAttribute Leave leave, BindingResult result, @PathVariable Integer id)
+    public String editLeave(@ModelAttribute @Valid Leave leave, BindingResult result, @PathVariable Integer id, Model model)
     {
         if(result.hasErrors()){
+            // model.addAttribute("leave", leaveService.getLeaveWithLeaveId(id));
             return "staff/leave-edit";
         }
         leave.setStartDate(leave.getStartDate());

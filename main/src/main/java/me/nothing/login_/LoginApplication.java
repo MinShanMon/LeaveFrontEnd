@@ -43,12 +43,13 @@ public class LoginApplication {
 			Role role3 = roleRepository.save(new Role("staff"));			
 			// String passwd= "root";
 			String encodedPassword = passwordEncoder.encode("root");
-			Staff staff1 = staffRepository.save(new Staff(1, 0, "root", encodedPassword, "lapyae.945@gmail.com", "notitile", "shan", "mon", true, null, null, 60, 10, 0, 1, null));
+			Staff staff1 = staffRepository.save(new Staff(1, 0, "root", encodedPassword, "lapyae.945@gmail.com", "notitile", "shan", "mon", true, null, null, 60, 10, 5, 1, null));
 
-			Staff staff2 = staffRepository.save(new Staff(2, 1, "staff", encodedPassword, "chaile@gmail.com", "notitile", "ch", "lay", true, null, null, 60, 10, 0, 0, null));
+			Staff staff2 = staffRepository.save(new Staff(2, 1, "staff", encodedPassword, "chaile@gmail.com", "notitile", "ch", "lay", true, null, null, 60, 10, 5, 0, null));
 			List<Role> manager = new ArrayList<>();
 			List<Role> staff = new ArrayList<>();
 			manager.add(role2);
+			// manager.add(role3);
 			staff.add(role3);
 			staff2.setRoles(staff);
 			staff1.setRoles(manager);
