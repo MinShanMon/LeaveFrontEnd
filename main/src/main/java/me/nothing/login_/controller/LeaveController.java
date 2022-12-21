@@ -50,10 +50,6 @@ public class LeaveController {
         model.addAttribute("lhistory", employeeLeave);
         return "staff/home";
     }
-    @GetMapping("leave/both")
-    public String bothLeavePage(){
-        return "staff/both-leave";
-    }
 
     @GetMapping("leave/create")
     public String newLeavePage(Model model){
@@ -69,7 +65,10 @@ public class LeaveController {
 
         _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();
         leave.setLeave(staffDetails.getStaff());        
-        leave.setPeriod(.5);
+        if(leave.isHalfday()){
+            leave.setPeriod(.5);
+        }
+        leave.setPeriod(leave.getEndDate().toEpochDay()-leave.getStartDate().toEpochDay());
         leaveService.createLeaveHistory(staffDetails.getStaff().getStfId(), leave);
         return "redirect:/staff/leave/history";
     }

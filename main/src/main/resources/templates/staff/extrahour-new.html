@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout.html :: html_head"/>
+  <head th:replace="layout.html :: html_head"/>
 <body>
-  <div th:replace="fragments/layout.html :: menu"/>
-  <div th:replace="fragments/layout.html :: header"/>   
+  <div th:replace="staff/stafflayout.html :: menu"/>  
     <h3>Extra Hour Application Page</h3>
-  <form action="#" th:action="@{/extra/post}"
-    th:object="${ExtraHour}}" method="post">
+  <form action="#" th:action="@{/exstaff/overtime/create}"
+    th:object="${ExtraHour}" method="post">
     <table>
       <tbody>
         <tr>
