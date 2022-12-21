@@ -49,7 +49,7 @@ public class LoginApplication {
 			List<Role> manager = new ArrayList<>();
 			List<Role> staff = new ArrayList<>();
 			manager.add(role2);
-			// manager.add(role3);
+			manager.add(role3);
 			staff.add(role3);
 			staff2.setRoles(staff);
 			staff1.setRoles(manager);
