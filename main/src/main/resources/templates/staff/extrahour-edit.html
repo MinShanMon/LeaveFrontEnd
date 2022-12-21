@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout.html :: html_head"/>
+<head th:replace="layout.html :: html_head"/>
 <body>
-  <div th:replace="fragments/layout.html :: menu"/>
-  <div th:replace="fragments/layout.html :: header"/> 
+  <div th:replace="layout.html :: menu"/>
+  
     <h3>Edit Extra Hour Application Page</h3>
-  <form action="#" th:action="@{/extra/put/}+${ExtraHour.id}"
-    th:object="${ExtraHour}" method="post">
+  <form action="#" th:action="@{/extra/put/}+${extra.id}"
+    th:object="${extra}" method="post">
     <table>
       <tbody>
         <tr>
-          <td><input type="hidden" th:field="*{id}" /> <input
-            type="hidden" th:field="*{id}" /> <input type="hidden"
-            th:field="*{status}" /> <span th:text=""></span></td>
+          <td><input type="hidden" th:field="*{id}" /><input type="hidden" th:field="*{Staff_id}"> 
+             <span>Working Hour</span></td>
           <td><input type="text" th:field="*{working_hour}" size="40" /></td>
           <td th:if="${#fields.hasErrors('working_hour')}"
             th:errors="*{working_hour}"></td>
@@ -25,7 +24,7 @@
         <tr>
           <td><span th:text="Status"></span></td>
           <td><input type="text" th:field="*{status}" size="20"
-            disabled="disabled" /></td>
+            readonly="readonly" /></td>
         </tr>
         <tr>
           <td></td>

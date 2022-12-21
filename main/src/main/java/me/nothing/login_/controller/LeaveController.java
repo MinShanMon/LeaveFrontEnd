@@ -69,18 +69,24 @@ public class LeaveController {
 
     @PostMapping("/leave/create")
     public String createNewLeave(@ModelAttribute("leave") @Valid Leave leave, BindingResult result, Authentication authentication){
-        if(result.hasErrors()){
-            return "staff/leave-new";
+        try{
+            if(result.hasErrors()){
+                return "staff/leave-new";
+            }
+    
+            _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();
+            leave.setLeave(staffDetails.getStaff());        
+            if(leave.isHalfday()){
+                leave.setPeriod(.5);
+            }
+            leave.setPeriod(leave.getEndDate().toEpochDay()-leave.getStartDate().toEpochDay());
+            leaveService.createLeaveHistory(staffDetails.getStaff().getStfId(), leave);
+            return "redirect:/staff/leave/history";
+        }
+        catch(Exception e){
+            return "redirect:/staff/leave/create?error=true";
         }
 
-        _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();
-        leave.setLeave(staffDetails.getStaff());        
-        if(leave.isHalfday()){
-            leave.setPeriod(.5);
-        }
-        leave.setPeriod(leave.getEndDate().toEpochDay()-leave.getStartDate().toEpochDay());
-        leaveService.createLeaveHistory(staffDetails.getStaff().getStfId(), leave);
-        return "redirect:/staff/leave/history";
     }
 
     @GetMapping("leave/edit/{id}")

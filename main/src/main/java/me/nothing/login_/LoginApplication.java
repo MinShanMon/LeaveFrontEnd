@@ -46,6 +46,7 @@ public class LoginApplication {
 			Staff staff1 = staffRepository.save(new Staff(1, 0, "root", encodedPassword, "lapyae.945@gmail.com", "notitile", "shan", "mon", true, null, null, 60, 10, 5, 1, null));
 
 			Staff staff2 = staffRepository.save(new Staff(2, 1, "staff", encodedPassword, "chaile@gmail.com", "notitile", "ch", "lay", true, null, null, 60, 10, 5, 0, null));
+			Staff staff3 = staffRepository.save(new Staff(3, 1, "staff2", encodedPassword, "asdf@gmail.com", "notitile", "tt", "ss", true, null, null, 60, 10, 5, 0, null));
 			List<Role> manager = new ArrayList<>();
 			List<Role> staff = new ArrayList<>();
 			manager.add(role2);
@@ -53,12 +54,24 @@ public class LoginApplication {
 			staff.add(role3);
 			staff2.setRoles(staff);
 			staff1.setRoles(manager);
-
+			staff3.setRoles(staff);
 			staffRepository.saveAndFlush(staff1);
 			staffRepository.saveAndFlush(staff2);
+			staffRepository.saveAndFlush(staff3);
 			Leave leave2 = new Leave(LeaveTypeEnum.MEDICAL_LEAVE, LocalDate.now().plusDays(2), LocalDate.now().plusDays(4), 2, LeaveStatusEnum.APPROVED, "null", "null");
 			Leave leave22 = leaveService.createLeaveHistory(2, leave2);
 
+			ExtraHour ext = new ExtraHour();
+			ext.setDate(LocalDate.now());
+			ext.setStaff_id(2);
+			ext.setStatus(LeaveStatusEnum.SUBMITTED);
+			ext.setWorking_hour(12);
+			extraHourService.createExtraHour(ext);
+
+			List<ExtraHour> exts = extraHourService.suboExtraHour(2);
+			for(ExtraHour e: exts){
+				System.out.println(e);
+			}
 			// 			List<Leave> leaves = leaveService.findLeaveWithStaffId(2);
 
 			

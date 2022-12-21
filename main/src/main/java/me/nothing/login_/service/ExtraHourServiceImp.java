@@ -45,6 +45,22 @@ public class ExtraHourServiceImp implements ExtraHourService{
 
 
     @Override
+    public ExtraHour getExtraWithId(Integer id){
+        Mono<ExtraHour> retrievedExtra = webClient.get()
+                                        .uri("/extra/getwithextid/{id}",id)
+                                        .accept(MediaType.APPLICATION_JSON)
+                                        .exchangeToMono(response->{
+                                            if(response.statusCode().equals(HttpStatus.OK)){
+                                                return response.bodyToMono(ExtraHour.class);
+                                            }
+                                            else{
+                                                return response.createException().flatMap(Mono::error);
+                                            }
+                                        });
+        return retrievedExtra.block();
+    }
+
+    @Override
     public List<ExtraHour> suboExtraHour(Integer id) {
         Flux<ExtraHour> retrievedExtraList = webClient.get()
                                     .uri("/extra/get/{id}", id)

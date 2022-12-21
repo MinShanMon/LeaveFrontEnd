@@ -22,4 +22,6 @@ public interface ExtraHourService {
 
     ExtraHour rejecExtraHour(Integer id);
 
+    ExtraHour getExtraWithId(Integer id);
+
 }
