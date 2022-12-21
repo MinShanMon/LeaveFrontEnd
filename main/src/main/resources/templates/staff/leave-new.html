@@ -2,7 +2,7 @@
 <html lang="en">
     <head th:replace="layout.html :: html_head"/>
 <body>
-    <div th:replace="staff/stafflayout.html :: menu"/>
+    <div th:replace="layout.html :: menu"/>
     <p>hello</p>
     <form action="#" th:action="@{/staff/leave/create}"
     th:object="${leave}" method="post">

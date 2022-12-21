@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import me.nothing.login_.model.Role;
 import me.nothing.login_.model.Staff;
 import me.nothing.login_.model._StaffDetails;
 import me.nothing.login_.service.LeaveService;

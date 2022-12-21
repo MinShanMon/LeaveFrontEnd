@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import me.nothing.login_.model.Leave;
 import me.nothing.login_.model.LeaveStatusEnum;
+import me.nothing.login_.model.Role;
 import me.nothing.login_.model._StaffDetails;
 import me.nothing.login_.service.LeaveService;
 import org.springframework.security.core.Authentication;
@@ -41,12 +42,21 @@ public class LeaveController {
     }
     
     @GetMapping("leave/history")
-    public String employeeLeaveHistory( Model model, Authentication authentication){
-        _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();        
+    public String employeeLeaveHistory( Model model, Authentication authentication, HttpSession session){
+        _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();  
+        // _StaffDetails staffDetails=(_StaffDetails)session.getAttribute("usession");
+        List<Role> roles = staffDetails.getStaff().getRoles();
+		Role role= new Role();
+		for(Role r: roles){
+			role = r;
+		}
+		System.out.println("myprint "+ role.getName());
+		session.setAttribute("usession", role);
         List<Leave> employeeLeave = leaveService.findLeaveWithStaffId(staffDetails.getStaff().getStfId());
         for(Leave l: employeeLeave){
             System.out.println(l);
         }
+        model.addAttribute("staffDetails", staffDetails);
         model.addAttribute("lhistory", employeeLeave);
         return "staff/home";
     }

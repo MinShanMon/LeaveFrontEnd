@@ -2,7 +2,7 @@
 <html lang="en">
   <head th:replace="layout.html :: html_head"/>
 <body>
-  <div th:replace="staff/stafflayout.html :: menu"/>
+  <div th:replace="layout.html :: menu"/>
   <h2>Your Course History</h2>
   
   <div th:if="${#lists.isEmpty(lhistory)}">
@@ -20,9 +20,7 @@
               <th><span>endDate</span></th>
               <th><span>Period</span></th>
               <th><span>Status</span></th>                    
-              <th><span>Reason</span></th>         
-              
-              
+              <th><span>Reason</span></th>                                   
               <th><span>WorkD</span></th>
               <th><span>Update</span></th>
               <th><span>Withdraw/Delete</span></th>

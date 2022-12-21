@@ -22,6 +22,7 @@ import me.nothing.login_.model.Staff;
 import me.nothing.login_.model.Approve;
 import me.nothing.login_.model.Leave;
 import me.nothing.login_.model.LeaveStatusEnum;
+import me.nothing.login_.model.Role;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.validation.BindingResult;
@@ -35,9 +36,16 @@ public class ManagerLeaveController {
     private LeaveService leaveService;
 
     @RequestMapping(value = "/pending")
-    public String pendingAarpvals(Model model, Authentication auth){
+    public String pendingAarpvals(Model model, Authentication auth, HttpSession session){
          
         _StaffDetails usersession = (_StaffDetails) auth.getPrincipal();
+        List<Role> roles = usersession.getStaff().getRoles();
+		Role role= new Role();
+		for(Role r: roles){
+			role = r;
+		}
+		System.out.println("myprint "+ role.getName());
+		session.setAttribute("usession", role);
         List<Staff> surbodinates = leaveService.getSubordinate(usersession.getStaff().getStfId());
         Map<Staff, List<Leave>> subordinateToLeavesMap = new HashMap<>();
         for(Staff subordinate: surbodinates){
