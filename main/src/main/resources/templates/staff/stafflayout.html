@@ -11,6 +11,13 @@
             <a th:href="@{/staff/leave/create}">Apply For New Leave</a>
           </div>
         </div>    
+        <div class="subnav">
+          <button class="subnavbtn">Overtime Work <i class="fa fa-caret-down"></i></button>
+          <div class="subnav-content">
+            <a th:href="@{/staff/leave/history}">Overtime working History</a>
+            <a th:href="@{/staff/leave/create}">Apply For New Leave</a>
+          </div>
+        </div>    
         <form th:action="@{/logout}" method="post">
           <a>
             <input display="none" type="submit" value="LogOut"/></a>
