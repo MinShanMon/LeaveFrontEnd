@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout.html :: html_head"/>
+<body>
+  <div th:replace="layout.html :: menu"/>
+    <div th:if="${#lists.isEmpty(dayLeave)}">
+        <h2>No staffs took leave for the day<h2>
+      </div>
+      
+      <div th:if="${not #lists.isEmpty(dayLeave)}">
+        <h2>Hello, there is the leave list for the day </h2>
+            <table style=" border: 1;">
+                <tr class="listHeading">
+                  <th><span>leaveId</span></th>
+                  <th><span>Type</span></th>
+                  <th><span>startDate</span></th>
+                  <th><span>endDate</span></th>
+                  <th><span>Period</span></th>
+                  <th><span>Status</span></th>                    
+                  <th><span>Reason</span></th>         
+                  <th><span>WorkD</span></th>
+                </tr>
+                <tr th:each="leave : ${dayLeave}" class="listRecord" th:if="${not #strings.equals(leave.status, 'DELETED')}">
+                  <td align="left" th:text="${leave.id}">Id</td>
+                  <td align="left" th:text="${leave.type}">Name</td>
+                  <td align="left" th:text="${#temporals.format(leave.startDate, 'yyyy-MM-dd')}">From</td>
+                  <td align="left" th:text="${#temporals.format(leave.endDate, 'yyyy-MM-dd')}">To</td>
+                  <td align="left" th:text="${leave.period}">Fees</td>
+                  <td align="left" th:text="${leave.status}">Status</td>               
+                  <td align="left" th:text="${leave.reason}"></td>                       
+                  <td align="left" th:text="${leave.work}"></td>
+                </tr>
+            </table>
+      </div>
+</body>
+</html>

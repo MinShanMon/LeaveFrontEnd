@@ -25,4 +25,7 @@ public interface LeaveService {
     public Leave withdrawLeave(int id);
 
     public List<Leave> getpendingLeave(int id);
+
+    public List<Leave> findLeaveWithDay(String day);
+    
 }

@@ -1,6 +1,8 @@
 package me.nothing.login_.service;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -141,4 +143,23 @@ public class LeaveServiceImpl implements LeaveService {
                                     });
         return pendingleave.collectList().block();
     }
+
+
+    @Override
+    public List<Leave> findLeaveWithDay(String day){
+        Flux<Leave> retrievedLeaveList = webClient.get()
+                                    .uri("/getByday/{day}", day)
+                                    .accept(MediaType.APPLICATION_JSON)
+                                    .exchangeToFlux(response ->{
+                                        if(response.statusCode().equals(HttpStatus.OK)){
+                                            return response.bodyToFlux(Leave.class);
+                                        }
+                                        else{
+                                            return response.createException().flatMapMany(Flux::error);
+                                        }
+                                    });
+
+        return retrievedLeaveList.collectList().block();
+    }
+
 }
