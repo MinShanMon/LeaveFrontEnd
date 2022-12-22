@@ -33,6 +33,7 @@
               <td><span>endDate</span></td>
               <td><input type="date" th:value="*{endDate}" th:field="*{endDate}"/></td>
               <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
+              <td th:if="${param.error}">Not Enough Leave To Apply <span th:text="${error}"></span></td>
           </tr>
           <tr>
               <td><span>workDissemination</span></td>

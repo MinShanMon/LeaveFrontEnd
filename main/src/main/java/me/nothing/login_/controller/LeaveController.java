@@ -103,7 +103,8 @@ public class LeaveController {
 
     @PostMapping("/leave/edit")
     public String editLeave(@ModelAttribute @Valid Leave leave, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+        
+            if (result.hasErrors()) {
             // model.addAttribute("leave", leaveService.getLeaveWithLeaveId(id));
             return "staff/leave-edit";
         }
