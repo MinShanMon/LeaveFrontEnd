@@ -38,58 +38,50 @@ public class LoginApplication {
 	public CommandLineRunner run(StaffRepository staffRepository, RoleRepository roleRepository, LeaveService leaveService, ExtraHourService extraHourService) {
 		return args -> {
 
-			
-			// Role role1 = roleRepository.save(new Role("admin"));
+
+						
 			Role role2 = roleRepository.save(new Role("manager"));
 			Role role3 = roleRepository.save(new Role("staff"));			
-			// String passwd= "root";
-			String encodedPassword = passwordEncoder.encode("root");
-			Staff staff1 = staffRepository.save(new Staff(1, 0, "root", encodedPassword, "lapyae.945@gmail.com", "notitile", "shan", "mon", true, null, null, 60, 10, 5, 1, null));
-
-			Staff staff2 = staffRepository.save(new Staff(2, 1, "staff", encodedPassword, "chaile@gmail.com", "notitile", "ch", "lay", true, null, null, 60, 10, 5, 0, null));
-			Staff staff3 = staffRepository.save(new Staff(3, 1, "staff2", encodedPassword, "asdf@gmail.com", "notitile", "tt", "ss", true, null, null, 60, 10, 5, 0, null));
 			List<Role> manager = new ArrayList<>();
 			List<Role> staff = new ArrayList<>();
 			manager.add(role2);
-			// manager.add(role3);
 			staff.add(role3);
-			staff2.setRoles(staff);
-			staff1.setRoles(manager);
-			staff3.setRoles(staff);
-			staffRepository.saveAndFlush(staff1);
-			staffRepository.saveAndFlush(staff2);
-			staffRepository.saveAndFlush(staff3);
-			Leave leave2 = new Leave(LeaveTypeEnum.MEDICAL_LEAVE, LocalDate.now().plusDays(2), LocalDate.now().plusDays(4), 2, LeaveStatusEnum.APPROVED, "null", "null");
-			Leave leave22 = leaveService.createLeaveHistory(2, leave2);
 
-			ExtraHour ext = new ExtraHour();
-			ext.setDate(LocalDate.now());
-			ext.setStaff_id(2);
-			ext.setStatus(LeaveStatusEnum.SUBMITTED);
-			ext.setWorking_hour(12);
-			extraHourService.createExtraHour(ext);
-
-			List<ExtraHour> getpending = extraHourService.getpendingExtra(2);
-			for(ExtraHour e: getpending){
-				System.out.println(e);
-			}
+			// String passwd= "root";
+			String encodedPassword = passwordEncoder.encode("root");
+			Staff may = staffRepository.save(new Staff(0, "may",encodedPassword, "Manager", "May","Tan",
+			true, "May_Tan@gmail.com", 18, 14, 0.5));
+			may.setRoles(manager);
+			staffRepository.saveAndFlush(may);
 			
-			// for(Leave l: leaves){
-			// 	System.out.println("find leave with staff id");
-			// 	System.out.println(l);
-			// }
-			// Leave leave23 = new Leave(1,LeaveTypeEnum.ANNUAL_LEAVE, LocalDate.now().plusDays(1), LocalDate.now().plusDays(15), 2, LeaveStatusEnum.SUBMITTED, "null", "null",staff2);
-			
-			// System.out.println("created leave");
-			// System.out.println(leave22);
-
-			// Leave leave = leaveService.updateLeaveHistory(leave22);
-			// System.out.println("updated leave");
-			// System.out.println(leave);
-			// List<Leave> leaves = leaveService.getpendingLeave(2);
-			// for(Leave l: leaves){
-			// 	System.out.println(l);
-			// }
+			Staff john = staffRepository.saveAndFlush(new Staff(0, "john",encodedPassword, "Manager", "John","Tan",
+			true, "John_Tan@gmail.com", 18, 14, 2.5));
+			john.setRoles(manager);
+			staffRepository.saveAndFlush(john);
+			Staff lynn =  staffRepository.saveAndFlush(new Staff(1, "lynn", encodedPassword,"Data Analyst", "Ying", "Li",
+			true, "Ying_Li@gmail.com", 18, 14, 2.5));
+			lynn.setRoles(staff);
+			staffRepository.saveAndFlush(lynn);
+			Staff lexi = staffRepository.saveAndFlush(new Staff(1,"lexi",encodedPassword, "Business Analyst", "Shan", "Feng", 
+			true, "Shan_Feng@gmail.com", 18, 14, 0));
+			lexi.setRoles(staff);
+			staffRepository.saveAndFlush(lexi);
+			Staff cailei = staffRepository.saveAndFlush(new Staff(1,"cailei", encodedPassword, "no title", "Cai Lei", "Zhang", 
+			true, "Cailei_Zhang@gmail.com", 18, 14, 0));
+			cailei.setRoles(staff);
+			staffRepository.saveAndFlush(cailei);
+			Staff oscar = staffRepository.saveAndFlush(new Staff(2,"oscar", encodedPassword, "Software Developer", "Shan Mon", "Min", 
+			true, "ShanMon_Min@gmail.com", 18, 14, 5));
+			oscar.setRoles(staff);
+			staffRepository.saveAndFlush(oscar);
+			Staff travis = staffRepository.saveAndFlush(new Staff(2,"travis", encodedPassword, "Software Architect", "La Pyae Htun", "Soe", 
+			true, "e1045754@u.nus.edu", 18, 14, 6.5));
+			travis.setRoles(staff);
+			staffRepository.saveAndFlush(travis);
+			Staff ivan = staffRepository.saveAndFlush(new Staff(2,"ivan", encodedPassword, "Admin", "Ivan Tse Khiang ", "Eng", 
+			true, "Ivan_Eng@gmail.com", 14, 14, 0));
+			ivan.setRoles(staff);
+			staffRepository.saveAndFlush(ivan);
 
 		};
 

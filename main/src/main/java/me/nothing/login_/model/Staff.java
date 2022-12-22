@@ -121,4 +121,21 @@ public class Staff {
 		return false;
 	}
 
+	    
+    public Staff(int managerId, String username, String password,String title,
+            String firstname, String lastname, boolean status, String email, int anuLeave, int mediLeave,
+            double compLeave) {
+        this.managerId = managerId;
+        this.username = username;
+        this.password = password;
+        this.title = title;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.status = status;
+        this.email = email;
+        this.anuLeave = anuLeave;
+        this.mediLeave = mediLeave;
+        this.compLeave = compLeave;
+    }
+
 }
