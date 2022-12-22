@@ -80,29 +80,4 @@ public class ManagerExtraController {
         extraHourService.rejecExtraHour(id);
         return "redirect:/managere/overtime/pending";
     }
-    // @GetMapping("/leave/delete/{id}")
-    // public String deleteLeave(@PathVariable("id") Integer id){
-    //     leaveService.deleteLeave(id);
-    //     return "redirect:/staff/leave/history";
-    // }
-
-    // @PostMapping("/leave/edit/{id}")
-    // public String approveOrRejectCourse(@ModelAttribute("approve") @Valid Approve approve, BindingResult result,
-    // @PathVariable Integer id){
-    //     if(result.hasErrors()){
-    //         return "manager-leave-detail";
-    //     }
-
-    //     Leave l = leaveService.getLeaveWithLeaveId(id);
-    //     if(approve.getDecision().trim().equalsIgnoreCase(LeaveStatusEnum.APPROVED.toString())){
-    //         l.setStatus(LeaveStatusEnum.APPROVED);            
-    //         l.setReason(approve.getReason());
-    //     }
-    //     else{
-    //         l.setStatus(LeaveStatusEnum.REJECTED);
-    //         l.setReason(approve.getReason());
-    //     }
-    //     leaveService.approvLeave(l);
-    //     return "redirect:/manager/pending";
-    // }  
 }
