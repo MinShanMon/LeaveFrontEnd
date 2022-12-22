@@ -24,31 +24,31 @@
         </tr>
         <tr>
           <td><span>Start Date</span></td>
-          <td><input type="date" th:value="*{startDate}" th:field="*{startDate}"  /></td>
+          <td><input type="date" th:value="*{startDate}" th:field="*{startDate}" required /></td>
           <td th:if="${#fields.hasErrors('startDate')}"
             th:errors="*{startDate}"></td>
         </tr>
         <tr>
           <td><span>End Date</span></td>
-          <td><input type="date" th:value="*{endDate}" th:field="*{endDate}" /></td>
+          <td><input type="date" th:value="*{endDate}" th:field="*{endDate}" required/></td>
           <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
           <td th:if="${param.error}">Not Enough Leave To Apply <span th:text="${error}"></span></td>
         </tr>
         <tr>
             <td><span>workDissemination</span></td>
-            <td><input type="text" th:field="*{work}"></td>
+            <td><input type="text" th:field="*{work}" required></td>
             <td th:if="${#fields.hasErrors('work')}" th:errors="*{work}"></td>
         </tr>
         <tr>
           <td><span>Half Day Leave</span></td>
-          <td><input type="checkbox" th:field="*{halfday}" /></td>
+          <td><input type="checkbox" th:field="*{halfday}" required/></td>
           <td th:if="${#fields.hasErrors('halfday')}" th:errors="*{halfday}"></td>
         </tr>
         <tr>
           <td></td>
           <td>
-            <input type="submit" value="Create" class="blcass" />
-            <input type="reset" value="Reset" class="blcass" />
+            <input type="submit" value="Create" class="blcass" required/>
+            <input type="reset" value="Reset" class="blcass" required/>
           </td>
         </tr>
       </tbody>

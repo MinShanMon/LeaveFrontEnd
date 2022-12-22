@@ -10,7 +10,7 @@
         <tbody>
           <tr>
             <td><input type="hidden" th:field="*{id}" /> <input
-              type="hidden" th:field="*{leave}" /> <span>Type</span></td>
+              type="hidden" th:field="*{leave}" required/> <span>Type</span></td>
             <td>
               <fieldset>
                   <select th:field="*{type}">
@@ -25,29 +25,29 @@
           </tr>
           <tr>
               <td><span>startDate</span></td>
-              <td><input type="date" th:value="*{startDate}" th:field="*{startDate}"  /></td>
+              <td><input type="date" th:value="*{startDate}" th:field="*{startDate}" required /></td>
               <td th:if="${#fields.hasErrors('startDate')}"
               th:errors="*{startDate}"></td>
           </tr>
           <tr>
               <td><span>endDate</span></td>
-              <td><input type="date" th:value="*{endDate}" th:field="*{endDate}" /></td>
+              <td><input type="date" th:value="*{endDate}" th:field="*{endDate}" required/></td>
               <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
           </tr>
           <tr>
               <td><span>workDissemination</span></td>
-              <td><input type="text" th:field="*{work}"></td>
+              <td><input type="text" th:field="*{work}" required></td>
               <td th:if="${#fields.hasErrors('work')}" th:errors="*{work}"></td>
           </tr>
           <tr>
             <td><span>Status</span></td>
             <td><input type="text" th:field="*{status}" size="20"
-              readonly="readonly" /></td>
+              readonly="readonly" required/></td>
           </tr>
           <tr>
             <td></td>
             <td>
-              <input type="submit" value="Update" class="blcass" />
+              <input type="submit" value="Update" class="blcass" required />
             </td>
           </tr>
         </tbody>

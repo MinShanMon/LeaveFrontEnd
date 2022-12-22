@@ -122,16 +122,25 @@ public class ExtraHourServiceImp implements ExtraHourService{
         return rejectExtra.block();
     }
 
-    // @Override
-    // public ExtraHour updExtraHour(ExtraHour extraHour) {
-    //     Mono<ExtraHour> updatedExtra = webClient.put().uri("/extra/put").body(Mono.just(extraHour), ExtraHour.class).retrieve().bodyToMono(ExtraHour.class);
-
-    //     return updatedExtra.block();
-    // }
 
     @Override
     public ExtraHour updExtraHour(ExtraHour extraHour) {
         Mono<ExtraHour> updatedextra = webClient.put().uri("/extra/put").body(Mono.just(extraHour), ExtraHour.class).retrieve().bodyToMono(ExtraHour.class);
         return updatedextra.block();
+    }
+
+    @Override
+    public List<ExtraHour> getpendingExtra(int id){
+        Flux<ExtraHour> pendingleave  = webClient.get().uri("/extra/viewpending/{id}",id)
+                                    .accept(MediaType.APPLICATION_JSON)
+                                    .exchangeToFlux(response->{
+                                        if(response.statusCode().equals(HttpStatus.OK)){
+                                            return response.bodyToFlux(ExtraHour.class);
+                                        }
+                                        else{
+                                            return response.createException().flatMapMany(Flux::error);
+                                        }
+                                    });
+        return pendingleave.collectList().block();
     }
 }
