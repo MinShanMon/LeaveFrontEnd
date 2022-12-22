@@ -16,9 +16,6 @@
                   <th><span>startDate</span></th>
                   <th><span>endDate</span></th>
                   <th><span>Period</span></th>
-                  <th><span>Status</span></th>                    
-                  <th><span>Reason</span></th>         
-                  <th><span>WorkD</span></th>
                 </tr>
                 <tr th:each="leave : ${dayLeave}" class="listRecord" th:if="${not #strings.equals(leave.status, 'DELETED')}">
                   <td align="left" th:text="${leave.id}">Id</td>
@@ -26,9 +23,6 @@
                   <td align="left" th:text="${#temporals.format(leave.startDate, 'yyyy-MM-dd')}">From</td>
                   <td align="left" th:text="${#temporals.format(leave.endDate, 'yyyy-MM-dd')}">To</td>
                   <td align="left" th:text="${leave.period}">Fees</td>
-                  <td align="left" th:text="${leave.status}">Status</td>               
-                  <td align="left" th:text="${leave.reason}"></td>                       
-                  <td align="left" th:text="${leave.work}"></td>
                 </tr>
             </table>
       </div>

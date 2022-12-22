@@ -43,7 +43,7 @@ public class ExtraHourController {
         return "redirect:/exstaff/extra/history";
     }
 
-    @GetMapping("extra/history")
+    @GetMapping("/extra/history")
     public String employeeLeaveHistory( Model model, Authentication authentication){
         _StaffDetails staffDetails = (_StaffDetails) authentication.getPrincipal();        
         List<ExtraHour> employeeExtraHour = extraHourService.suboExtraHour(staffDetails.getStaff().getStfId());
