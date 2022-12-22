@@ -3,7 +3,7 @@
   <head th:replace="layout.html :: html_head"/>
 <body>
   <div th:replace="layout.html :: menu"/>  
-    <h3>Extra Hour Application Page</h3>
+    <h3>Apply Overtime Leave</h3>
     <form action="#" th:action="@{/exstaff/overtime/create}"
     th:object="${ExtraHour}" method="post">
     <table>
@@ -19,8 +19,8 @@
         <tr>
           <td></td>
           <td>
-            <input type="submit" value="Submit" class="blcass" required/>
-            <input type="reset" value="Reset" class="blcass" required/>
+            <input type="submit" value="Submit" class="blcass"/>
+            <input type="reset" value="Reset" class="blcass"/>
           </td>
         </tr>
       </tbody>

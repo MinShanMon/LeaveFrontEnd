@@ -8,16 +8,18 @@
 <body>
     <div th:fragment="menu" id="menu">
         <nav class="navbar">
-            <a th:href="@{/home}">Leave Applying System</a>
+            <a>Leave Applying System</a>
+            <a th:href="@{/staff/leave/history}">Home</a>
+
             <div th:if="${session.usession?.name}">
               <div th:if="${session.usession.name == 'manager'}">                
                   <div class="subnav">
                       <button class="subnavbtn">Manager Menu <i class="fa fa-caret-down"></i></button>
                       <div class="subnav-content">
-                      <a th:href="@{/manager/pending}">Pending Approvals</a>
-                      <a th:href="@{/manager/subordinates-history}">Leave Subordinates History</a>
-                      <a th:href="@{/managere/overtime/pending}">Overtime Approvals</a>
-                      <a th:href="@{/managere/overtime/subordinates-history}">Overtime Subordinates History</a>
+                      <a th:href="@{/manager/pending}">Pending Leave</a>
+                      <a th:href="@{/manager/subordinates-history}">Subordinates Leave History</a>
+                      <a th:href="@{/managere/overtime/pending}">Pending Overtime</a>
+                      <a th:href="@{/managere/overtime/subordinates-history}">Subordinates Overtime History</a>
                       </div>
                   </div>
               </div>
@@ -26,26 +28,25 @@
                 <div class="subnav">
                   <button class="subnavbtn">Staff Menu <i class="fa fa-caret-down"></i></button>
                   <div class="subnav-content">
-                    <a th:href="@{/staff/leave/history}">View Your Leave History</a>
+                    <a th:href="@{/staff/leave/history}">View Leave History</a>
                     <a th:href="@{/staff/leave/create}">Apply For New Leave</a>
-                    
                   </div>
                 </div>    
                 <div class="subnav">
-                  <a th:href="@{/calendar}">Cal</a>
+                  <a th:href="@{/calendar}">Calendar</a>
                 </div>
                 <div class="subnav">
-                  <button class="subnavbtn">Overtime Work Menu<i class="fa fa-caret-down"></i></button>
+                  <button class="subnavbtn">Overtime Menu<i class="fa fa-caret-down"></i></button>
                   <div class="subnav-content">
-                    <a th:href="@{/exstaff/extra/history}">Overtime working History</a>
-                    <a th:href="@{/exstaff/overtime/create}">Apply Overtime Work Form</a>
+                    <a th:href="@{/exstaff/extra/history}">Overtime Application History</a>
+                    <a th:href="@{/exstaff/overtime/create}">Apply Overtime Leave</a>
                   </div>
                 </div>  
               </div>              
             </div>
               <form th:action="@{/logout}" method="post">
                 <a>
-                  <input display="none" type="submit" value="LogOut" required/></a>
+                  <input display="none" type="submit" value="LogOut"/></a>
               </form>        
             </form>
           </nav>

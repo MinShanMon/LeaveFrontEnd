@@ -3,7 +3,7 @@
   <head th:replace="layout.html :: html_head"/>
 <body>
   <div th:replace="layout.html :: menu"/>
-  <h3>Leave History</h3>  
+  <h3>Subordinates Leave History</h3>  
   <div th:if="${not #lists.isEmpty(pendinghistory)}">
     <table>
       <tr class="listRecord" th:each="entry, stat : ${pendinghistory} ">
@@ -24,8 +24,7 @@
                 <th><span>Period</span></th>
                 <th><span>Status</span></th>                    
                 <th><span>Reason</span></th>         
-                <th><span>WorkD</span></th>
-                
+                <th><span>WorkD</span></th>                
               </tr>
               <tr class="listRecord" th:each="leave : ${entry.value}">
                 <td th:text="${leave.id}">Id</td>
