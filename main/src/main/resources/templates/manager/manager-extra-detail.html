@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="layout.html :: html_head"/>
+<body>
+    <div th:replace="layout.html :: menu"/>
+    <h3>Leave Detail for Approval</h3>
+
+  <table>
+    <tr>
+      <th align="right"><span>Leave
+          ID</span></th>
+      <td colspan="3" th:text="${leave.id}">Id</td>
+    </tr>
+    <tr>
+      <th align="right"><span>Staff Id</span></th>
+      <td colspan="3" th:text="${leave.Staff_id}">Name</td>
+    </tr>
+    <tr>
+      <th align="right"><span>
+          Date</span></th>
+      <td th:text="${#temporals.format(leave.date, 'dd-MMM-yyyy')}">
+        From Date</td>
+    </tr>
+    <tr>
+      <th align="right"><span>Working Hour</span>
+      </th>
+      <td colspan="3" th:text="${leave.working_hour}"></td>
+    </tr>
+    <tr>
+      <th align="right"><span>Status</span>
+      </th>
+      <td colspan="3" th:text="${leave.status}">Status</td>
+    </tr>
+  </table>
+
+
+  <!-- <form action="#" th:action="@{/managere/extra/edit/}+${leave.id}" th:object="${approve}" method="post"> -->
+    <table>
+      <tr>
+        <td>
+          <fieldset>
+            <!-- <input type="radio" th:field="*{decision}" th:value="APPROVED"/>
+            <label>Approve</label> &nbsp;&nbsp; <input type="radio"
+              th:field="*{decision}" th:value="REJECTED" /> <label>Reject</label> -->
+              <a th:href="@{/managere/extra/approve/}+${leave.id}">Approve</a>
+          </fieldset>
+        </td>
+        <td>
+            <a th:href="@{/managere/extra/approve/}+${leave.id}">Reject</a>
+        </td>
+      </tr>
+
+    </table>
+
+  <!-- </form> -->
+</body>
+</html>
