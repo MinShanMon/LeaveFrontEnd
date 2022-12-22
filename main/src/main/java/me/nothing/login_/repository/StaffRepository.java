@@ -14,6 +14,12 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
 	@Query("SELECT u FROM Staff u WHERE u.username = :username")
 	public Staff findByUsername(@Param("username") String uername);
 
+	@Query("SELECT u FROM Staff u WHERE u.stfId = :id")
+	public Staff findById(@Param("id") int id);
+
+    @Query("SELECT u.stfId FROM Staff u WHERE u.username = :username")
+	public int findByUsernameToGetId(@Param("username") String uername);
+
 	@Query("UPDATE Staff SET failedAttempt = :failedAttempt WHERE username = :username ")
 	@Modifying
 	public void updateFailedAttempt(@Param("failedAttempt") int failedAttempt, @Param("username") String username);

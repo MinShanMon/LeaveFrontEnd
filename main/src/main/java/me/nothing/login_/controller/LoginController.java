@@ -34,7 +34,7 @@ public class LoginController {
 	@Autowired
 	LeaveService leaveService;
 	
-	@RequestMapping("")
+	@RequestMapping(value = {"/", "/home"})
 	public String index() {
 		return "redirect:login";
 	}

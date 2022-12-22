@@ -12,6 +12,7 @@
           <div th:if="${#lists.isEmpty(entry.value)}">
             <p>No Pending Leave</p>
           </div>
+          <a th:href="@{'/manager/leave/export/'+ ${entry.key.username}}">export</a>
           <div th:if="${not #lists.isEmpty(entry.value)}">
             <table style="border: 1;">
               <tr class="listHeading">
