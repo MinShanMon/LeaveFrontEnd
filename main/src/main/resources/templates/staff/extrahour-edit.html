@@ -10,26 +10,26 @@
     <table>
       <tbody>
         <tr>
-          <td><input type="hidden" th:field="*{id}" /><input type="hidden" th:field="*{Staff_id}"> 
+          <td><input type="hidden" th:field="*{id}" required/><input type="hidden" th:field="*{Staff_id}" required> 
              <span>Working Hour</span></td>
-          <td><input type="text" th:field="*{working_hour}" size="40" /></td>
+          <td><input type="text" th:field="*{working_hour}" size="40" required/></td>
           <td th:if="${#fields.hasErrors('working_hour')}"
             th:errors="*{working_hour}"></td>
         </tr>
         <tr>
           <td><span th:text="Date"></span></td>
-          <td><input type="date" th:field="*{date}" size="40" /></td>
+          <td><input type="date" th:field="*{date}" size="40" required/></td>
           <td th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></td>
         </tr>
         <tr>
           <td><span th:text="Status"></span></td>
           <td><input type="text" th:field="*{status}" size="20"
-            readonly="readonly" /></td>
+            readonly="readonly" required/></td>
         </tr>
         <tr>
           <td></td>
           <td>
-            <input type="submit" value="Update" class="blcass" />
+            <input type="submit" value="Update" class="blcass" required/>
           </td>
         </tr>
       </tbody>

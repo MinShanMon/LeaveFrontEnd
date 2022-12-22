@@ -49,7 +49,7 @@
       <tr>
         <td>
           <fieldset>
-            <input type="radio" th:field="*{decision}" th:value="APPROVED" />
+            <input type="radio" th:field="*{decision}" th:value="APPROVED" required/>
             <label>Approve</label> &nbsp;&nbsp; <input type="radio"
               th:field="*{decision}" th:value="REJECTED" /> <label>Reject</label>
           </fieldset>
@@ -57,7 +57,7 @@
       </tr>
       <tr>
         <td><label>Comment</label></td>
-        <td><input th:field="*{reason}" type="text"></td>
+        <td><input th:field="*{reason}" type="text" required></td>
       </tr>
       <tr>
         <td>

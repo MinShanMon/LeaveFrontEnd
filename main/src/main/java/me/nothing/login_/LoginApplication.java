@@ -38,6 +38,7 @@ public class LoginApplication {
 	public CommandLineRunner run(StaffRepository staffRepository, RoleRepository roleRepository, LeaveService leaveService, ExtraHourService extraHourService) {
 		return args -> {
 
+			
 			// Role role1 = roleRepository.save(new Role("admin"));
 			Role role2 = roleRepository.save(new Role("manager"));
 			Role role3 = roleRepository.save(new Role("staff"));			

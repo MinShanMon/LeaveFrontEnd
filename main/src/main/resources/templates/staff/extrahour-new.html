@@ -10,17 +10,17 @@
       <tbody>
         <tr>
           <td><span>Working Hour</span></td>
-          <td><input type="text" th:field="*{working_hour}" size="40" /></td>
+          <td><input type="text" th:field="*{working_hour}" size="40" required/></td>
         </tr>
         <tr>
           <td><span>Date</span></td>
-          <td><input type="date" th:value="*{date}" th:field="*{date}" /></td>
+          <td><input type="date" th:value="*{date}" th:field="*{date}" required/></td>
         </tr>
         <tr>
           <td></td>
           <td>
-            <input type="submit" value="Submit" class="blcass" />
-            <input type="reset" value="Reset" class="blcass" />
+            <input type="submit" value="Submit" class="blcass" required/>
+            <input type="reset" value="Reset" class="blcass" required/>
           </td>
         </tr>
       </tbody>
