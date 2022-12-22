@@ -8,9 +8,7 @@
 <body>
     <div th:fragment="menu" id="menu">
         <nav class="navbar">
-            <a th:href="@{/about}">Leave Applying System</a>
-            <a th:href="@{/home}">Home</a>
-            <a th:href="@{/about}">About</a>
+            <a th:href="@{/home}">Leave Applying System</a>
             <div th:if="${session.usession?.name}">
               <div th:if="${session.usession.name == 'manager'}">                
                   <div class="subnav">
