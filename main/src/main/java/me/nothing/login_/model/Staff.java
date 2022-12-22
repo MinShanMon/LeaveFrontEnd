@@ -1,5 +1,6 @@
 package me.nothing.login_.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -18,6 +19,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.type.LocalDateTimeType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -89,7 +92,7 @@ public class Staff {
     inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
 	private List<Role> roles;
 
-	private static final long otpDuration = 3 * 6 * 1000; // valid in 3 min
+	//private static final long otpDuration = 3 * 6 * 1000; // valid in 3 min
 
 	public boolean isOTPRequired() {
 		if (this.getOtp() == null) {

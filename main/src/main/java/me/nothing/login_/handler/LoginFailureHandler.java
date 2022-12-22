@@ -29,11 +29,10 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
         System.out.println("Login error:" + exception.getMessage());
 
         String username = request.getParameter("username");
-        System.out.print("this is username from fail handler"+username);
         Staff staff = staffService.getUserbyUsername(username);
 
         if (staff != null) {
-       
+
             if (staff.getFailedAttempt() < 5) {
                 staffService.increaseFailedAttempt(staff);
             } else {
@@ -45,17 +44,12 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
         }
 
         String failureUrl = "/login?error";
-        System.out.print("this is from user nulll condition");
-        System.out.println(exception.getMessage().contains("OTP"));
-       
-        
-
         if (exception.getMessage().contains("OTP")) {
             Staff staf = staffService.getUserbyUsername(username);
             failureUrl = "/login?otp=true&username=" + staf.getUsername();
         } else {
 
-            if (staff != null) {
+            if (staff != null && staff.isOTPRequired()) {
                 failureUrl = "/login?otp=true&username=" + staff.getUsername();
             }
 
