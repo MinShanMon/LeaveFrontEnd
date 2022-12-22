@@ -51,14 +51,6 @@ public class ExtraHourController {
         return "staff/extrahour-history";
     }
 
-    @GetMapping("extra/put/{id}")
-    public String newovertimepage(@PathVariable int id, Model model){
-        ExtraHour ext = extraHourService.getExtraWithId(id);
-        model.addAttribute("extra", ext);
-        return "staff/extrahour-edit";
-    }
-
-    
 
     // @GetMapping("leave/edit/{id}")
     // public String editLeavePage(@PathVariable int id, Model model){
@@ -67,20 +59,30 @@ public class ExtraHourController {
     //     return "staff/leave-edit";
     // }
 
-    // @PostMapping("/leave/edit/{id}")
-    // public String editLeave(@ModelAttribute @Valid Leave leave, BindingResult result, @PathVariable Integer id, Model model)
-    // {
-    //     if(result.hasErrors()){
-    //         // model.addAttribute("leave", leaveService.getLeaveWithLeaveId(id));
-    //         return "staff/leave-edit";
-    //     }
-    //     leave.setStartDate(leave.getStartDate());
-    //     leave.setEndDate(leave.getEndDate());
-    //     leave.setType(leave.getType());
-    //     leaveService.updateLeaveHistory(leave);
-    //     return "redirect:/staff/leave/history";
-    // }
+    @GetMapping("extra/put/{id}")
+    public String newovertimepage(@PathVariable int id, Model model){
+        ExtraHour ext = extraHourService.getExtraWithId(id);
+        model.addAttribute("extra", ext);
+        return "staff/extrahour-edit";
+    }
 
+
+    @PostMapping("extra/put")
+    public String editextra(@ModelAttribute @Valid ExtraHour extra, BindingResult result, Model model){
+        if(result.hasErrors()){
+            return "staff/extrahour-edit";
+        }
+        extraHourService.updExtraHour(extra);
+
+        return "redirect:/exstaff/extra/history";
+    }
+    
+    @RequestMapping(value="extra/delete/{id}")
+    public String deleteextra(@PathVariable Integer id){
+        // ExtraHour extra = extraHourService.getExtraWithId(id);
+        extraHourService.delExtraHour(id);
+        return "redirect:/exstaff/extra/history";
+    }
     // @GetMapping("/leave/withdraw/{id}")
     // public String withdrawLeave(@PathVariable("id") Integer id){
     //     // Leave leave = leaveService.getLeaveWithLeaveId(id);

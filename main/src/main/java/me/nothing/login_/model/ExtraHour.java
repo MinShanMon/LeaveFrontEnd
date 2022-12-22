@@ -38,6 +38,7 @@ public class ExtraHour {
 
     private int Staff_id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Column(name = "status", columnDefinition = "ENUM('SUBMITTED', 'APPROVED', 'UPDATED', 'REJECTED') default 'SUBMITTED'")

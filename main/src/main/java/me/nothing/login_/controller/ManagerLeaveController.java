@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import me.nothing.login_.model._StaffDetails;
+import me.nothing.login_.service.ExtraHourService;
 import me.nothing.login_.service.LeaveService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import me.nothing.login_.model.Staff;
 import me.nothing.login_.model.Approve;
+import me.nothing.login_.model.ExtraHour;
 import me.nothing.login_.model.Leave;
 import me.nothing.login_.model.LeaveStatusEnum;
 import me.nothing.login_.model.Role;
@@ -29,8 +31,9 @@ import org.springframework.validation.BindingResult;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/managere")
 public class ManagerLeaveController {
+
 
     @Autowired
     private LeaveService leaveService;

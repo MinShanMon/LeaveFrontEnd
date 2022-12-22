@@ -5,7 +5,7 @@
   <div th:replace="layout.html :: menu"/>
   
     <h3>Edit Extra Hour Application Page</h3>
-  <form action="#" th:action="@{/extra/put/}+${extra.id}"
+  <form action="#" th:action="@{/exstaff/extra/put/}"
     th:object="${extra}" method="post">
     <table>
       <tbody>
@@ -17,9 +17,10 @@
             th:errors="*{working_hour}"></td>
         </tr>
         <tr>
-          <td><span th:text="Date"></span></td>
-          <td><input type="date" th:field="*{date}" size="40" required/></td>
-          <td th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></td>
+          <td><span>Date</span></td>
+          <td><input type="date" th:value="*{date}" th:field="*{date}"  /></td>
+          <td th:if="${#fields.hasErrors('date')}"
+          th:errors="*{date}"></td>
         </tr>
         <tr>
           <td><span th:text="Status"></span></td>

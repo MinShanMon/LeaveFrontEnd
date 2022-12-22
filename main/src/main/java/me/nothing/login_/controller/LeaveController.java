@@ -68,7 +68,7 @@ public class LeaveController {
     }
 
     @PostMapping("/leave/create")
-    public String createNewLeave(@ModelAttribute("leave") @Valid Leave leave, BindingResult result, Authentication authentication){
+    public String createNewLeave(@ModelAttribute("leave") @Valid Leave leave, BindingResult result,Model model, Authentication authentication){
         try{
             if(result.hasErrors()){
                 return "staff/leave-new";
@@ -84,6 +84,7 @@ public class LeaveController {
             return "redirect:/staff/leave/history";
         }
         catch(Exception e){
+            model.addAttribute("erro", e.getMessage());
             return "redirect:/staff/leave/create?error=true";
         }
 
@@ -96,16 +97,13 @@ public class LeaveController {
         return "staff/leave-edit";
     }
 
-    @PostMapping("/leave/edit/{id}")
-    public String editLeave(@ModelAttribute @Valid Leave leave, BindingResult result, @PathVariable Integer id, Model model)
+    @PostMapping("/leave/edit")
+    public String editLeave(@ModelAttribute @Valid Leave leave, BindingResult result, Model model)
     {
         if(result.hasErrors()){
             // model.addAttribute("leave", leaveService.getLeaveWithLeaveId(id));
             return "staff/leave-edit";
         }
-        leave.setStartDate(leave.getStartDate());
-        leave.setEndDate(leave.getEndDate());
-        leave.setType(leave.getType());
         leaveService.updateLeaveHistory(leave);
         return "redirect:/staff/leave/history";
     }
