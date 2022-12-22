@@ -3,7 +3,7 @@
   <head th:replace="layout.html :: html_head"/>
 <body>
   <div th:replace="layout.html :: menu"/>
-  <h2>Your Course History</h2>
+  <h2>Your Leave History</h2>
   
   <div th:if="${#lists.isEmpty(lhistory)}">
     <p>You have no courses. Start applying a new one.</p>
@@ -18,7 +18,7 @@
               <th><span>Type</span></th>
               <th><span>startDate</span></th>
               <th><span>endDate</span></th>
-              <th><span>Period</span></th>
+              <th><span>Duration</span></th>
               <th><span>Status</span></th>                    
               <th><span>Reason</span></th>                                   
               <th><span>WorkD</span></th>

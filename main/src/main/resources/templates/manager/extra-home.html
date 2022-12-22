@@ -4,7 +4,7 @@
     
 <body>
     <div th:replace="layout.html :: menu"/>
-    <h3>Leave History</h3>  
+    <h3>Pending Overtime</h3>  
   <div th:if="${not #lists.isEmpty(pendinghistory)}">
     <table>
       <tr class="listRecord" th:each="entry, stat : ${pendinghistory} ">
