@@ -49,6 +49,7 @@ public class LoginApplication {
 
 			// String passwd= "root";
 			String encodedPassword = passwordEncoder.encode("root");
+<<<<<<< HEAD
 			Staff may = staffRepository.save(new Staff(0, "may",encodedPassword, "Project Manager", "May","Tan",
 			true, "May_Tan@gmail.com", 18, 60, 0));
 			may.setRoles(manager);
@@ -80,6 +81,39 @@ public class LoginApplication {
 			staffRepository.saveAndFlush(travis);
 			Staff ivan = staffRepository.saveAndFlush(new Staff(2,"ivan", encodedPassword, "Admin", "Ivan Tse Khiang ", "Eng", 
 			true, "Ivan_Eng@gmail.com", 14, 60, 0));
+=======
+			Staff may = staffRepository.save(new Staff(0, "may",encodedPassword, "Manager", "May","Tan",
+			true, "May_Tan@gmail.com", 18, 14, 0.5));
+			may.setRoles(manager);
+			staffRepository.saveAndFlush(may);
+			
+			Staff john = staffRepository.saveAndFlush(new Staff(0, "john",encodedPassword, "Manager", "John","Tan",
+			true, "John_Tan@gmail.com", 18, 14, 2.5));
+			john.setRoles(manager);
+			staffRepository.saveAndFlush(john);
+			Staff lynn =  staffRepository.saveAndFlush(new Staff(1, "lynn", encodedPassword,"Data Analyst", "Ying", "Li",
+			true, "Ying_Li@gmail.com", 18, 14, 2.5));
+			lynn.setRoles(staff);
+			staffRepository.saveAndFlush(lynn);
+			Staff lexi = staffRepository.saveAndFlush(new Staff(1,"lexi",encodedPassword, "Business Analyst", "Shan", "Feng", 
+			true, "Shan_Feng@gmail.com", 18, 14, 0));
+			lexi.setRoles(staff);
+			staffRepository.saveAndFlush(lexi);
+			Staff cailei = staffRepository.saveAndFlush(new Staff(1,"cailei", encodedPassword, "no title", "Cai Lei", "Zhang", 
+			true, "Cailei_Zhang@gmail.com", 18, 14, 0));
+			cailei.setRoles(staff);
+			staffRepository.saveAndFlush(cailei);
+			Staff oscar = staffRepository.saveAndFlush(new Staff(2,"oscar", encodedPassword, "Software Developer", "Shan Mon", "Min", 
+			true, "ShanMon_Min@gmail.com", 18, 14, 5));
+			oscar.setRoles(staff);
+			staffRepository.saveAndFlush(oscar);
+			Staff travis = staffRepository.saveAndFlush(new Staff(2,"travis", encodedPassword, "Software Architect", "La Pyae Htun", "Soe", 
+			true, "e1045754@u.nus.edu", 18, 14, 6.5));
+			travis.setRoles(staff);
+			staffRepository.saveAndFlush(travis);
+			Staff ivan = staffRepository.saveAndFlush(new Staff(2,"ivan", encodedPassword, "Admin", "Ivan Tse Khiang ", "Eng", 
+			true, "Ivan_Eng@gmail.com", 14, 14, 0));
+>>>>>>> origin/main
 			ivan.setRoles(staff);
 			staffRepository.saveAndFlush(ivan);
 

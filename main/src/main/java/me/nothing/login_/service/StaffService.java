@@ -1,6 +1,7 @@
 package me.nothing.login_.service;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 
@@ -52,6 +53,7 @@ public class StaffService implements UserDetailsService {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encoderOTP = passwordEncoder.encode(OTP);
 		staff.setOtp(encoderOTP);
+	
 		staff.setOtpReqTime(new Date());
 
 		staffRepo.save(staff);
