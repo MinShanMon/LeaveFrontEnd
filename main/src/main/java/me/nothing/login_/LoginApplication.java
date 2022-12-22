@@ -63,13 +63,15 @@ public class LoginApplication {
 
 			ExtraHour ext = new ExtraHour();
 			ext.setDate(LocalDate.now());
-			ext.setStaff_id(1);
+			ext.setStaff_id(2);
 			ext.setStatus(LeaveStatusEnum.SUBMITTED);
 			ext.setWorking_hour(12);
 			extraHourService.createExtraHour(ext);
 
-
-
+			List<ExtraHour> getpending = extraHourService.getpendingExtra(2);
+			for(ExtraHour e: getpending){
+				System.out.println(e);
+			}
 			
 			// for(Leave l: leaves){
 			// 	System.out.println("find leave with staff id");

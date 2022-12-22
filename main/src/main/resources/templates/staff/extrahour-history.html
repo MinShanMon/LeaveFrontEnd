@@ -2,7 +2,7 @@
 <html lang="en">
   <head th:replace="layout.html :: html_head"/>
 <body>
-  <div th:replace="staff/stafflayout.html :: menu"/>
+  <div th:replace="layout.html :: menu"/>
   <h2>Your Extra Hour Application History</h2>
 
   <div th:if="${#lists.isEmpty(ehistory)}">

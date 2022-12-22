@@ -24,4 +24,6 @@ public interface ExtraHourService {
 
     ExtraHour getExtraWithId(Integer id);
 
+    public List<ExtraHour> getpendingExtra(int id);
+
 }

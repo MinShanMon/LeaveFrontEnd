@@ -31,7 +31,7 @@ import org.springframework.validation.BindingResult;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/managere")
+@RequestMapping("/manager")
 public class ManagerLeaveController {
 
 

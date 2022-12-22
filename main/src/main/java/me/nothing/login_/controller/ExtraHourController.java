@@ -83,19 +83,7 @@ public class ExtraHourController {
         extraHourService.delExtraHour(id);
         return "redirect:/exstaff/extra/history";
     }
-    // @GetMapping("/leave/withdraw/{id}")
-    // public String withdrawLeave(@PathVariable("id") Integer id){
-    //     // Leave leave = leaveService.getLeaveWithLeaveId(id);
-    //     leaveService.withdrawLeave(id);
-    //     return "redirect:/staff/leave/history";
-        
-    // }
 
-    // @GetMapping("/leave/delete/{id}")
-    // public String deleteLeave(@PathVariable("id") Integer id){
-    //     leaveService.deleteLeave(id);
-    //     return "redirect:/staff/leave/history";
-    // }
 
 
 }

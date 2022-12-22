@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="layout.html :: html_head"/>
+    
+<body>
+    <div th:replace="layout.html :: menu"/>
+    <h3>Leave History</h3>  
+  <div th:if="${not #lists.isEmpty(pendinghistory)}">
+    <table>
+      <tr class="listRecord" th:each="entry, stat : ${pendinghistory} ">
+        <td>
+          <h4 th:text="${entry.key.username}">Name</h4>          
+          <div th:if="${#lists.isEmpty(entry.value)}">
+            <p>No Pending Leave</p>
+          </div>
+          <div th:if="${not #lists.isEmpty(entry.value)}">
+            <table style="border: 1;">
+              <tr class="listHeading">
+                <th><span>leaveId</span></th>
+                <th><span>EmployeeId</span></th>
+                <th><span>Status</span></th>
+                <th><span>Date</span></th>
+                <th><span>working_hour</span></th>
+                <th><span>Detail</span></th>
+              </tr>
+              <tr class="listRecord" th:each="extra : ${entry.value}">
+                <td th:text="${extra.id}">Id</td>
+                <td th:text="${extra.Staff_id}">Employee</td>
+                <td th:text="${extra.status}">Name</td>
+                <td th:text="${#temporals.format(extra.date, 'yyyy-MM-dd')}">From</td>
+                <td th:text="${extra.working_hour}">Fees</td>
+                <td><a th:href="@{/managere/extra/display/}+${extra.id}"
+                    class="btn btn-default"><span>details</span></a></td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
