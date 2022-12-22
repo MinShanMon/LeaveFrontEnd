@@ -4,7 +4,7 @@
 <body>
     <div th:replace="layout.html :: menu"/>
     <h3>Edit Course Application Page</h3>
-    <form action="#" th:action="@{/staff/leave/edit/}+${leave.id}"
+    <form action="#" th:action="@{/staff/leave/edit/}"
       th:object="${leave}" method="post">
       <table>
         <tbody>

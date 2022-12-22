@@ -35,7 +35,7 @@
         <td>
           <div
             th:if="${#strings.equals(ExtraHour.status, 'SUBMITTED')  or #strings.equals(ExtraHour.status,'UPDATED')}">
-            <a th:href="@{/extra/delete/}+${ExtraHour.id}">Delete</a>
+            <a th:href="@{/exstaff/extra/delete/}+${ExtraHour.id}">Delete</a>
           </div>
         </td>
       </tr>

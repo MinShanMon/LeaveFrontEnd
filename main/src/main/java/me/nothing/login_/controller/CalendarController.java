@@ -37,7 +37,7 @@ public class CalendarController {
     public String newLeavePage(Model model){
         return "/calendar";
     }
-    
+
     @GetMapping("/calendar/list/{day}")
     public String dayLeaveHistory(@PathVariable String day, Model model, Authentication authentication){
        // LocalDate parseLocalDate = LocalDate.parse(day, DateTimeFormatter.ofPattern("yyyyMMdd"));       
@@ -48,5 +48,7 @@ public class CalendarController {
         model.addAttribute("dayLeave", dayLeave);
         return "/calendar-list";
     }
+
+
 }
 

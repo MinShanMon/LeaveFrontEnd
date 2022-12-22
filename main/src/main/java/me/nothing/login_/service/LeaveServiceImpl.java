@@ -73,12 +73,14 @@ public class LeaveServiceImpl implements LeaveService {
                                         
         return createLeave.block();
     }
+
     @Override
     public Leave updateLeaveHistory(Leave leave) {
         Mono<Leave> updatedLeave = webClient.put().uri("/leave/put").body(Mono.just(leave), Leave.class).retrieve().bodyToMono(Leave.class);
 
         return updatedLeave.block();
     }
+    
     @Override
     public Leave getLeaveWithLeaveId(Integer id) {
         Mono<Leave> getLeaveWithLeaveId = webClient.get()

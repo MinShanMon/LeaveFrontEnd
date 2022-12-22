@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpHeaders;
-
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 @Service
 public class ExtraHourServiceImp implements ExtraHourService{
     private static final Logger LOGGER = Logger.getLogger(Service.class.getName());
@@ -94,13 +94,27 @@ public class ExtraHourServiceImp implements ExtraHourService{
         return approvedExtraHour.block();
     }
 
+    // @Override
+    // public ExtraHour delExtraHour(Integer id) {        
+    //     Mono<ExtraHour> deletedExtra = webClient.delete().uri("/extra/delete/", id).retrieve().bodyToMono(ExtraHour.class);
+    //     return deletedExtra.block();
+    // }
     @Override
-    public ExtraHour delExtraHour(Integer id) {        
-        Mono<ExtraHour> deletedExtra = webClient.put().uri("/extra/delete/put/{id}", id).retrieve().bodyToMono(ExtraHour.class);
-
-        return deletedExtra.block();
+    public ExtraHour delExtraHour(Integer id) {
+        Mono<ExtraHour> deletedRole = webClient.delete()
+                .uri("/extra/delete/" + id)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    return Mono.error(NotFoundException::new);
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    return Mono.error(UnknownError::new);
+                })
+                .bodyToMono(ExtraHour.class)
+                .onErrorComplete();
+        return deletedRole.block();
     }
-
     @Override
     public ExtraHour rejecExtraHour(Integer id) {
         Mono<ExtraHour> rejectExtra = webClient.put().uri("/extra/reject/put/{id}", id).retrieve().bodyToMono(ExtraHour.class);
@@ -108,12 +122,16 @@ public class ExtraHourServiceImp implements ExtraHourService{
         return rejectExtra.block();
     }
 
+    // @Override
+    // public ExtraHour updExtraHour(ExtraHour extraHour) {
+    //     Mono<ExtraHour> updatedExtra = webClient.put().uri("/extra/put").body(Mono.just(extraHour), ExtraHour.class).retrieve().bodyToMono(ExtraHour.class);
+
+    //     return updatedExtra.block();
+    // }
+
     @Override
-    public ExtraHour updExtraHour(Integer id, ExtraHour extraHour) {
-        Mono<ExtraHour> updatedExtra = webClient.put().uri("/extra/put").body(Mono.just(extraHour), ExtraHour.class).retrieve().bodyToMono(ExtraHour.class);
-
-        return updatedExtra.block();
+    public ExtraHour updExtraHour(ExtraHour extraHour) {
+        Mono<ExtraHour> updatedextra = webClient.put().uri("/extra/put").body(Mono.just(extraHour), ExtraHour.class).retrieve().bodyToMono(ExtraHour.class);
+        return updatedextra.block();
     }
-
-    
 }

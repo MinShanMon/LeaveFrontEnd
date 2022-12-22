@@ -17,7 +17,9 @@
                       <button class="subnavbtn">Manager Menu <i class="fa fa-caret-down"></i></button>
                       <div class="subnav-content">
                       <a th:href="@{/manager/pending}">Pending Approvals</a>
-                      <a th:href="@{/manager/subordinates-history}">Subordinates History</a>
+                      <a th:href="@{/manager/subordinates-history}">Leave Subordinates History</a>
+                      <a th:href="@{/manager/overtime/pending}">Overtime Approvals</a>
+                      <a th:href="@{/manager/overtime/subordinates-history}">Overtime Subordinates History</a>
                       </div>
                   </div>
               </div>
@@ -41,10 +43,7 @@
                     <a th:href="@{/exstaff/overtime/create}">Apply Overtime Work Form</a>
                   </div>
                 </div>  
-              </div>  
-
-
-            
+              </div>              
             </div>
               <form th:action="@{/logout}" method="post">
                 <a>
