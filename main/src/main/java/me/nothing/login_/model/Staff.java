@@ -98,13 +98,13 @@ public class Staff {
 			return false;
 		}
 
-		long currentTimeInMillis = System.currentTimeMillis();
-		long otpRequestedTimeInMillis = this.otpReqTime.getTime();
+		// long currentTimeInMillis = System.currentTimeMillis();
+		// long otpRequestedTimeInMillis = this.otpReqTime.getTime();
 
-		if (otpRequestedTimeInMillis + otpDuration < currentTimeInMillis) {
-			// OTP expires
-			return false;
-		}
+		// if (otpRequestedTimeInMillis + otpDuration < currentTimeInMillis) {
+		// 	// OTP expires
+		// 	return false;
+		// }
 
 		return true;
 	}
