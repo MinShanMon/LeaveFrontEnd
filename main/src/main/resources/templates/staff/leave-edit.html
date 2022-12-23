@@ -3,7 +3,7 @@
     <head th:replace="layout.html :: html_head"/>
 <body>
     <div th:replace="layout.html :: menu"/>
-    <h3>Edit Course Application Page</h3>
+    <h3>Edit Leave Application Page</h3>
     <form action="#" th:action="@{/staff/leave/edit/}"
       th:object="${leave}" method="post">
       <table>
@@ -33,7 +33,7 @@
               <td><span>endDate</span></td>
               <td><input type="date" th:value="*{endDate}" th:field="*{endDate}"/></td>
               <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
-              <td th:if="${param.error}">Not Enough Leave To Apply <span th:text="${error}"></span></td>
+              <td th:if="${param.error}"><span th:text="${error}"></span></td>
           </tr>
           <tr>
               <td><span>workDissemination</span></td>

@@ -6,7 +6,7 @@
   <h2>Your Leave History</h2>
   
   <div th:if="${#lists.isEmpty(lhistory)}">
-    <p>You have no courses. Start applying a new one.</p>
+    <p>You have no leave. Start applying a new one.</p>
   </div>
   
   <div th:if="${not #lists.isEmpty(lhistory)}">

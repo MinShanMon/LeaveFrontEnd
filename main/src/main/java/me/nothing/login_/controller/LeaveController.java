@@ -82,7 +82,10 @@ public class LeaveController {
             if (leave.isHalfday()) {
                 leave.setPeriod(.5);
             }
-            leave.setPeriod(leave.getEndDate().toEpochDay() - leave.getStartDate().toEpochDay());
+            else{
+                leave.setPeriod(leave.getEndDate().toEpochDay() - leave.getStartDate().toEpochDay());
+            }
+            
             leaveService.createLeaveHistory(staffDetails.getStaff().getStfId(), leave);
             return "redirect:/staff/leave/history";
         } catch (Exception e) {
@@ -102,14 +105,18 @@ public class LeaveController {
     }
 
     @PostMapping("/leave/edit")
-    public String editLeave(@ModelAttribute @Valid Leave leave, BindingResult result, Model model) {
+    public String editLeave(@ModelAttribute @Valid Leave leave, BindingResult result, Model model,  RedirectAttributes redirectAttrs) {
+        
         
             if (result.hasErrors()) {
-            // model.addAttribute("leave", leaveService.getLeaveWithLeaveId(id));
-            return "staff/leave-edit";
-        }
-        leaveService.updateLeaveHistory(leave);
-        return "redirect:/staff/leave/history";
+                // model.addAttribute("leave", leaveService.getLeaveWithLeaveId(id));
+                return "staff/leave-edit";
+            }
+            leave.setPeriod(leave.getEndDate().toEpochDay() - leave.getStartDate().toEpochDay());
+            leaveService.updateLeaveHistory(leave);
+            return "redirect:/staff/leave/history";
+        
+         
     }
 
     @GetMapping("/leave/withdraw/{id}")

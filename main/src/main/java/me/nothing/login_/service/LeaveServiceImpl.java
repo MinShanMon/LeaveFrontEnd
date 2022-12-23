@@ -70,8 +70,8 @@ public class LeaveServiceImpl implements LeaveService {
                 .retrieve()
                 .onStatus(HttpStatus.BAD_REQUEST::equals,
                         response -> response.bodyToMono(String.class).map(Exception::new))
-                .bodyToMono(Leave.class)
-                .timeout(Duration.ofMillis(10_000));
+                .bodyToMono(Leave.class);
+                // .timeout(Duration.ofMillis(10_000));
 
         return createLeave.block();
     }
