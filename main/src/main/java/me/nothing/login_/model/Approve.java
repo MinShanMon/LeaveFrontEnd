@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Approve {
   private String decision;
   private String reason;
-  private boolean app;
+  
   
 //   public Approve(String decision, String comment) {
 //     this.decision = decision;

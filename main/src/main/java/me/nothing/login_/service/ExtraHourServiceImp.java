@@ -118,7 +118,6 @@ public class ExtraHourServiceImp implements ExtraHourService{
     @Override
     public ExtraHour rejecExtraHour(Integer id) {
         Mono<ExtraHour> rejectExtra = webClient.put().uri("/extra/reject/put/{id}", id).retrieve().bodyToMono(ExtraHour.class);
-
         return rejectExtra.block();
     }
 
