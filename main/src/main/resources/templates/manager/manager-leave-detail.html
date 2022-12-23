@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head th:replace="layout.html :: html_head"/>
+
+<head th:replace="layout.html :: html_head" />
+
 <body>
-    <div th:replace="layout.html :: menu"/>
-    <h3>Leave Detail for Approval</h3>
+  <div th:replace="layout.html :: menu" />
+  <h3>Leave Detail for Approval</h3>
 
   <table>
     <tr>
@@ -31,7 +33,7 @@
       </th>
       <td colspan="3" th:text="${leave.period}"></td>
     </tr>
-        <tr>
+    <tr>
       <th align="right"><span>WorkDissemination</span>
       </th>
       <td colspan="3" th:text="${leave.work}"></td>
@@ -49,20 +51,20 @@
       <tr>
         <td>
           <fieldset>
-            <input type="radio" th:field="*{decision}" th:value="APPROVED"/>
-            <label>Approve</label> &nbsp;&nbsp; <input type="radio"
-              th:field="*{decision}" th:value="REJECTED" /> <label>Reject</label>
+            <input type="radio" th:field="*{decision}" th:value="APPROVED" />
+            <label>Approve</label> &nbsp;&nbsp;
+            <input type="radio" id="reject" th:field="*{decision}" th:value="REJECTED" /> <label>Reject</label>
           </fieldset>
         </td>
       </tr>
       <tr>
         <td><label>Comment</label></td>
-        <td><input th:field="*{reason}" type="text" required></td>
+        <td><input th:field="*{reason}" type="text" id="reason"></td>
       </tr>
       <tr>
         <td>
           <fieldset>
-            <input th:type="submit" th:value="Update" class="blcass" />
+            <input th:type="submit" th:value="Update" class="blcass" onclick="clickMe()"/>
           </fieldset>
         </td>
 
@@ -71,5 +73,20 @@
     </table>
 
   </form>
+  <script>
+    conts
+    function clickMe() {
+      if (document.getElementById('reject').checked) {
+        const input = document.getElementById('reason');
+        input.setAttribute('required','');
+      }else{
+        const input = document.getElementById('reason');
+        input.removeAttribute('required','');
+      }
+    }
+  </script>
+
+
 </body>
+
 </html>

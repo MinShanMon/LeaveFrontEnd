@@ -27,7 +27,7 @@
                 <td th:text="${extra.Staff_id}">Employee</td>
                 <td th:text="${extra.status}">Name</td>
                 <td th:text="${#temporals.format(extra.date, 'yyyy-MM-dd')}">From</td>
-                <td th:text="${extra.working_hour}">Fees</td>
+                <td th:text="${extra.working_hour}">Working Hours</td>
                 <td><a th:href="@{/manager/extra/display/}+${extra.id}"
                     class="btn btn-default"><span>details</span></a></td>
               </tr>
