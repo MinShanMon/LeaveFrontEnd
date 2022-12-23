@@ -83,7 +83,7 @@ public class LeaveController {
                 leave.setPeriod(.5);
             }
             else{
-                leave.setPeriod(leave.getEndDate().toEpochDay() - leave.getStartDate().toEpochDay());
+                leave.setPeriod((leave.getEndDate().toEpochDay() - leave.getStartDate().toEpochDay()) + 1.0);
             }
             
             leaveService.createLeaveHistory(staffDetails.getStaff().getStfId(), leave);
