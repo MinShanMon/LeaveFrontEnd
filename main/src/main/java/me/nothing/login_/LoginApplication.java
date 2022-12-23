@@ -49,6 +49,7 @@ public class LoginApplication {
 
 			// String passwd= "root";
 			String encodedPassword = passwordEncoder.encode("root");
+
 			Staff may = staffRepository.save(new Staff(0, "may",encodedPassword, "Project Manager", "May","Tan",
 			true, "May_Tan@gmail.com", 18, 60, 0));
 			may.setRoles(manager);
@@ -71,7 +72,7 @@ public class LoginApplication {
 			cailei.setRoles(staff);
 			staffRepository.saveAndFlush(cailei);
 			Staff oscar = staffRepository.saveAndFlush(new Staff(2,"oscar", encodedPassword, "Software Developer", "Shan Mon", "Min", 
-			true, "ShanMon_Min@gmail.com", 18, 60, 0));
+			true, "ShanMon_Min@gmail.com", 18, 60, 5));
 			oscar.setRoles(staff);
 			staffRepository.saveAndFlush(oscar);
 			Staff travis = staffRepository.saveAndFlush(new Staff(2,"travis", encodedPassword, "Software Architect", "La Pyae Htun", "Soe", 
